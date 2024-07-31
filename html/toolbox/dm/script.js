@@ -1,7 +1,19 @@
-class SVGLineManager {
+class SVGSystemManager {
     constructor(svgRootId) {
         this.svgNS = "http://www.w3.org/2000/svg";
         this.svgRoot = document.getElementById(svgRootId);
+    }
+
+    createX(x, y) {
+        let x1 = x - 8;
+        let x2 = x + 8;
+        let y1 = y - 10;
+        let y2 = y + 10;
+        let pathData = `M${x1},${y1} L${x2},${y2} M${x1},${y2} L${x2},${y1}`;
+        let path = document.createElementNS(this.svgNS, "path");
+        path.setAttribute("d", pathData);
+        path.setAttribute("class", "cross"); // Ensure you have a 'cross' class defined in your CSS
+        this.svgRoot.appendChild(path);
     }
 
     createPolylines(startY, incrementX, numLines, classList) {
@@ -28,6 +40,7 @@ class SVGLineManager {
 
 // Using the class
 document.addEventListener("DOMContentLoaded", () => {
-    const lineManager = new SVGLineManager('svgRoot');
-    lineManager.createPolylines(855, 290, 12, ["", "dashed-line", "hidden", "", "", "", "", "", "", "", "", ""]);
+    const systemManager = new SVGSystemManager('svgRoot');
+    systemManager.createPolylines(855, 290, 12, ["", "dashed-line", "hidden", "", "", "", "", "", "", "", "", ""]);
+    systemManager.createX(300, 1175);
 });
