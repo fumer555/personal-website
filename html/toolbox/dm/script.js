@@ -22,7 +22,8 @@ class SVGSystemManager {
         for (let i = 0; i < xAttributes.length; i++) {
             x = xStart + (xAttributes[0] - 1) * 65; //raise this value
             y = yStart + (xAttributes[1] - 1) * 40;
-            createX(x, y)
+            createX(x, y);
+        }
     }
 
     createPolylines(startY, incrementX, numLines, lineAttributes) {
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ["hidden", 4],
         ["", 9], // Add more tuples as needed for each line
         ["", 2],
-        ["", 7],
+        ["hidden", 7],
         ["", 0],
         ["", 5],
         ["", 10],
