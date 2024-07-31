@@ -81,13 +81,13 @@ document.addEventListener("DOMContentLoaded", () => {
         ["", 8],
         ["", 1]
     ]);
-    // systemManager.createX(300, 1175);
+    systemManager.createX(300, 1175);
 
-    systemManager.createXs([
-        [1,9],
-        [1,10],
-        [1,12],
-        [2, 3]
-    ]);
+    // systemManager.createXs([
+    //     [1,9],
+    //     [1,10],
+    //     [1,12],
+    //     [2, 3]
+    // ]);
     
 });
