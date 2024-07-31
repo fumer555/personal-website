@@ -17,14 +17,15 @@ class SVGSystemManager {
     }
 
     createXs(xAttributes) {
-        xStart = 300;
-        yStart = 855;
+        const xStart = 300;
+        const yStart = 855;
         for (let i = 0; i < xAttributes.length; i++) {
-            x = xStart + (xAttributes[0] - 1) * 65; //raise this value
-            y = yStart + (xAttributes[1] - 1) * 40;
-            createX(x, y);
+            const x = xStart + (xAttributes[i][0] - 1) * 65; // Calculate x based on the attribute
+            const y = yStart + (xAttributes[i][1] - 1) * 40; // Calculate y based on the attribute
+            this.createX(x, y); // Use 'this.' to refer to another method in the same class
         }
     }
+    
 
     createPolylines(startY, incrementX, numLines, lineAttributes) {
         let y = startY;
@@ -73,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ["hidden", 4],
         ["", 9], // Add more tuples as needed for each line
         ["", 2],
-        ["hidden", 7],
+        ["", 7],
         ["", 0],
         ["", 5],
         ["", 10],
@@ -81,13 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
         ["", 8],
         ["", 1]
     ]);
-    systemManager.createX(300, 1175);
+    // systemManager.createX(300, 1175);
 
-    // systemManager.createXs([
-    //     [1,9],
-    //     [1,10],
-    //     [1,12],
-    //     [2, 3]
-    // ]);
+    systemManager.createXs([
+        [1,9],
+        [1,10],
+        [1,12],
+        [2, 3]
+    ]);
     
 });
