@@ -38,11 +38,12 @@ class System {
 
 // Initialize with some lines
 // window.onload = function() {
+
 //     createPolylines(855, 290, 12, ["", "dashed-line", "hidden", "", "", "", "", "", "", "", "", ""]);
 // };
 
 // Using the class
 document.addEventListener("DOMContentLoaded", () => {
-    const lineManager = new SVGLineManager('svgRoot');
+    const lineManager = new System('svgRoot');
     lineManager.createPolylines(855, 290, 12, ["", "dashed-line", "hidden", "hidden", "", "", "", "", "", "", "", ""]);
 });
