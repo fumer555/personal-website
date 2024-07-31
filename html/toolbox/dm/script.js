@@ -31,10 +31,10 @@ class SVGSystemManager {
             // Create and append the text element for the number
             if (attributes && attributes[1] !== undefined) {
                 let text = document.createElementNS(this.svgNS, "text");
-                text.setAttribute("x", 165); // 100 units to the left of the line start
+                text.setAttribute("x", 265 - 60); //  units to the left of the line start
                 text.setAttribute("y", y);
                 text.setAttribute("font-family", "Times New Roman");
-                text.setAttribute("font-size", "12");
+                text.setAttribute("font-size", "24");
                 text.setAttribute("dominant-baseline", "middle"); // Center text vertically
                 text.textContent = attributes[1];
                 this.svgRoot.appendChild(text);
