@@ -1,0 +1,50 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="300px" height="200px" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+
+    <!-- Style for the SVG content -->
+    <style type="text/css">
+        rect { fill: #8ED6FF; }
+        text { fill: #FFFFFF; font-family: Arial; font-size: 24px; }
+    </style>
+
+    <!-- A rectangle -->
+    <rect width="300" height="200"/>
+    <!-- Some text -->
+    <text x="50" y="115">Click to download!</text>
+
+    <!-- JavaScript to handle the image download -->
+    <script type="text/ecmascript"><![CDATA[
+        function downloadImage() {
+            var svg = document.querySelector('svg');
+            var xml = new XMLSerializer().serializeToString(svg);
+            var svg64 = btoa(unescape(encodeURIComponent(xml)));
+            var b64Start = 'data:image/svg+xml;base64,';
+            var image64 = b64Start + svg64;
+
+            var img = new Image();
+            img.src = image64;
+            img.onload = function() {
+                var canvas = document.createElement('canvas');
+                canvas.width = svg.width.baseVal.value;
+                canvas.height = svg.height.baseVal.value;
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                canvas.toBlob(function(blob) {
+                    var url = URL.createObjectURL(blob);
+                    var a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'download.png';
+                    document.body.appendChild(a); // Append anchor to body.
+                    a.click();
+                    document.body.removeChild(a); // Remove anchor from body
+                });
+            };
+        }
+
+        // Set up the double-click event listener
+        document.documentElement.addEventListener('dblclick', downloadImage);
+    ]]></script>
+</svg>
