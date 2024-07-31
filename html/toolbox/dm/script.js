@@ -44,5 +44,5 @@ class System {
 // Using the class
 document.addEventListener("DOMContentLoaded", () => {
     const lineManager = new SVGLineManager('svgRoot');
-    lineManager.createPolylines(855, 290, 12, ["", "dashed-line", "hidden", "", "", "", "", "", "", "", "", ""]);
+    lineManager.createPolylines(855, 290, 12, ["", "dashed-line", "hidden", "hidden", "", "", "", "", "", "", "", ""]);
 });
