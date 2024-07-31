@@ -16,16 +16,30 @@ class SVGSystemManager {
         this.svgRoot.appendChild(path);
     }
 
-    createPolylines(startY, incrementX, numLines, classList) {
+    createPolylines(startY, incrementX, numLines, lineAttributes) {
         let y = startY;
         for (let i = 0; i < numLines; i++) {
+            let attributes = lineAttributes[i];
             let polyline = document.createElementNS(this.svgNS, "polyline");
             polyline.setAttribute("points", `265,${y} ${265 + incrementX},${y}`);
             polyline.setAttribute("id", `line-${i}`);
-            if (classList && classList[i]) {
-                polyline.setAttribute("class", classList[i]);
+            if (attributes && attributes[0]) {
+                polyline.setAttribute("class", attributes[0]);
             }
             this.svgRoot.appendChild(polyline);
+
+            // Create and append the text element for the number
+            if (attributes && attributes[1] !== undefined) {
+                let text = document.createElementNS(this.svgNS, "text");
+                text.setAttribute("x", 165); // 100 units to the left of the line start
+                text.setAttribute("y", y);
+                text.setAttribute("font-family", "Times New Roman");
+                text.setAttribute("font-size", "12");
+                text.setAttribute("dominant-baseline", "middle"); // Center text vertically
+                text.textContent = attributes[1];
+                this.svgRoot.appendChild(text);
+            }
+
             y += 40; // Increment y by 40 for each line
         }
     }
@@ -41,6 +55,19 @@ class SVGSystemManager {
 // Using the class
 document.addEventListener("DOMContentLoaded", () => {
     const systemManager = new SVGSystemManager('svgRoot');
-    systemManager.createPolylines(855, 290, 12, ["", "dashed-line", "hidden", "", "", "", "", "", "", "", "", ""]);
+    systemManager.createPolylines(855, 290, 12, [
+        ["", 6],
+        ["dashed-line", 11],
+        ["hidden", 4],
+        ["", 9], // Add more tuples as needed for each line
+        ["", 2],
+        ["", 7],
+        ["", 0],
+        ["", 5],
+        ["", 10],
+        ["", 3],
+        ["", 8],
+        ["", 1]
+    ]);
     systemManager.createX(300, 1175);
 });
