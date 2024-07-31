@@ -36,8 +36,10 @@ class SVGSystemManager {
                 text.setAttribute("font-family", "Times New Roman");
                 text.setAttribute("font-size", "24");
                 text.setAttribute("dominant-baseline", "middle"); // Center text vertically
+                line.setAttribute("class", "black-fill");
                 text.textContent = attributes[1];
                 this.svgRoot.appendChild(text);
+                console.log(`Creating text at x: 165, y: ${y} with value: ${attributes[1]}`);
             }
 
             y += 40; // Increment y by 40 for each line
