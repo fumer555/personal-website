@@ -44,16 +44,20 @@ class SVGLineManager {
 
     downloadImage() {
         let svgData = new XMLSerializer().serializeToString(this.svgRoot);
+        console.log('SVG Data:', svgData); // Check what the serialized SVG looks like
         let canvas = document.createElement('canvas');
         let ctx = canvas.getContext('2d');
         let img = new Image();
-
+    
         img.onload = () => {
+            console.log('Image loaded'); // Confirm image loads
             canvas.width = this.svgRoot.clientWidth;
             canvas.height = this.svgRoot.clientHeight;
+            console.log('Canvas dimensions:', canvas.width, canvas.height); // Verify dimensions
             ctx.drawImage(img, 0, 0);
             canvas.toBlob((blob) => {
                 let url = URL.createObjectURL(blob);
+                console.log('Blob URL:', url); // Check blob URL
                 let link = document.createElement('a');
                 link.href = url;
                 link.download = "image.png";
@@ -62,9 +66,12 @@ class SVGLineManager {
                 document.body.removeChild(link);
             });
         };
-
+        img.onerror = (e) => {
+            console.error('Failed to load the image for canvas', e);
+        };
+    
         img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
-    }
+    }    
 }
 
 document.addEventListener("DOMContentLoaded", () => {
