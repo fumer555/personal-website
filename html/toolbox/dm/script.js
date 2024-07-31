@@ -16,6 +16,15 @@ class SVGSystemManager {
         this.svgRoot.appendChild(path);
     }
 
+    createXs(xAttributes) {
+        xStart = 300;
+        yStart = 855;
+        for (let i = 0; i < xAttributes.length; i++) {
+            x = xStart + (xAttributes[0] - 1) * 65; //raise this value
+            y = yStart + (xAttributes[1] - 1) * 40;
+            createX(x, y)
+    }
+
     createPolylines(startY, incrementX, numLines, lineAttributes) {
         let y = startY;
         for (let i = 0; i < numLines; i++) {
@@ -71,5 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
         ["", 8],
         ["", 1]
     ]);
-    systemManager.createX(300, 1175);
+    // systemManager.createX(300, 1175);
+
+    systemManager.createXs([
+        [1,9],
+        [1,10],
+        [1,12],
+        [2, 3]
+    ]);
+    
 });
