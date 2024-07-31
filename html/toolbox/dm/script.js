@@ -1,7 +1,11 @@
 class SVGSystemManager {
-    constructor(svgRootId) {
+    constructor(svgRootId, tones) {
         this.svgNS = "http://www.w3.org/2000/svg";
         this.svgRoot = document.getElementById(svgRootId);
+        this.idMap = {};
+        tones.forEach((item, index) => {
+            this.idMap[item] = index + 1;
+        });
     }
 
     createX(x, y) {
@@ -67,7 +71,7 @@ class SVGSystemManager {
 
 // Using the class
 document.addEventListener("DOMContentLoaded", () => {
-    const systemManager = new SVGSystemManager('svgRoot');
+    const systemManager = new SVGSystemManager('svgRoot', [6, 11, 4, 9, 2, 7, 0, 5, 10, 3, 8, 1]);
     systemManager.createPolylines(855, 290, 12, [
         ["", 6],
         ["dashed-line", 11],
