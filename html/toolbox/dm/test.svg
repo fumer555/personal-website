@@ -27,24 +27,37 @@
             var img = new Image();
             img.src = image64;
             img.onload = function() {
+                // Ensure canvas is properly created
                 var canvas = document.createElement('canvas');
-                canvas.width = svg.width.baseVal.value;
-                canvas.height = svg.height.baseVal.value;
-                var ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0);
-                canvas.toBlob(function(blob) {
-                    var url = URL.createObjectURL(blob);
-                    var a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'download.png';
-                    document.body.appendChild(a); // Append anchor to body.
-                    a.click();
-                    document.body.removeChild(a); // Remove anchor from body
-                });
+                if (canvas.getContext) {
+                    canvas.width = svg.width.baseVal.value;
+                    canvas.height = svg.height.baseVal.value;
+                    var ctx = canvas.getContext('2d');
+                    if (ctx) {
+                        ctx.drawImage(img, 0, 0);
+                        canvas.toBlob(function(blob) {
+                            var url = URL.createObjectURL(blob);
+                            var a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'download.png';
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                        });
+                    } else {
+                        console.error('Error: Canvas context not available.');
+                    }
+                } else {
+                    console.error('Error: Canvas element does not support getContext.');
+                }
+            };
+            img.onerror = function() {
+                console.error('Error: Image could not be loaded from data URL.');
             };
         }
 
-        // Set up the double-click event listener
+        // Add double-click event listener to the SVG element itself
         document.documentElement.addEventListener('dblclick', downloadImage);
     ]]></script>
+
 </svg>
