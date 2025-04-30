@@ -202,7 +202,7 @@
         // Function to load JSON data
         async function loadScheduleData() {
             try {
-                const response = await fetch('course_schedules.json');
+                const response = await fetch('https://fumer555.github.io/personal-website/course_schedules.json');
                 if (!response.ok) {
                     throw new Error('Failed to load schedule data');
                 }
@@ -476,47 +476,45 @@
                     const timeSlot = document.createElement('div');
                     timeSlot.className = 'time-slot';
                     
-                    // Check if any course is scheduled at this time
-                    currentSchedule.forEach(course => {
-                        course.times.forEach(([courseDay, courseTime]) => {
-                            const normalizedDay = normalizeDay(courseDay);
-                            if (normalizedDay === day) {
-                                const [start, end] = courseTime.split('-').map(t => parseInt(t));
+                // Check if any course is scheduled at this time
+                currentSchedule.forEach(course => {
+                    course.times.forEach(([courseDay, courseTime]) => {
+                        const normalizedDay = normalizeDay(courseDay);
+                        if (normalizedDay === day) {
+                            const [start, end] = courseTime.split('-').map(t => parseInt(t));
+                            
+                            // Calculate duration in 30-minute blocks
+                            const durationMinutes = (end - start);
+                            const durationSlots = Math.ceil(durationMinutes / 30);
+                            
+                            // Check if this time slot is within the course time
+                            if (time >= start && time < end) {
+                                const courseBlock = document.createElement('div');
+                                courseBlock.className = 'course-block';
+                                courseBlock.style.backgroundColor = getCourseColor(course.course);
+                                courseBlock.style.gridRow = `span ${durationSlots}`;
                                 
-                                // Calculate duration in 30-minute blocks
-                                const durationMinutes = (end - start);
-                                const durationSlots = Math.ceil(durationMinutes / 30);
+                                const courseName = document.createElement('div');
+                                courseName.className = 'course-name';
+                                courseName.textContent = course.course;
                                 
-                                // Check if this time slot is within the course time
-                                if (time >= start && time < end) {
-                                    // Only create the block for the first time slot it covers
-                                    if (time === start) {
-                                        const courseBlock = document.createElement('div');
-                                        courseBlock.className = 'course-block';
-                                        courseBlock.style.backgroundColor = getCourseColor(course.course);
-                                        courseBlock.style.gridRow = `span ${durationSlots}`;
-                                        
-                                        const courseName = document.createElement('div');
-                                        courseName.className = 'course-name';
-                                        courseName.textContent = course.course;
-                                        
-                                        const courseSection = document.createElement('div');
-                                        courseSection.className = 'course-section';
-                                        courseSection.textContent = `${course.lecture}${course.tutorial ? '/' + course.tutorial : ''}`;
-                                        
-                                        const courseTimeDisplay = document.createElement('div');
-                                        courseTimeDisplay.className = 'course-section';
-                                        courseTimeDisplay.textContent = `${formatTime(start)}-${formatTime(end)}`;
-                                        
-                                        courseBlock.appendChild(courseName);
-                                        courseBlock.appendChild(courseSection);
-                                        courseBlock.appendChild(courseTimeDisplay);
-                                        timeSlot.appendChild(courseBlock);
-                                    }
-                                }
+                                const courseSection = document.createElement('div');
+                                courseSection.className = 'course-section';
+                                courseSection.textContent = `${course.lecture}${course.tutorial ? '/' + course.tutorial : ''}`;
+                                
+                                const courseTimeDisplay = document.createElement('div');
+                                courseTimeDisplay.className = 'course-section';
+                                courseTimeDisplay.textContent = `${formatTime(start)}-${formatTime(end)}`;
+                                
+                                courseBlock.appendChild(courseName);
+                                courseBlock.appendChild(courseSection);
+                                courseBlock.appendChild(courseTimeDisplay);
+                                timeSlot.appendChild(courseBlock);
                             }
-                        });
+                        }
                     });
+                });
+
                     scheduleDisplay.appendChild(timeSlot);
                 });
             });
