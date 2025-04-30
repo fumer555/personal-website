@@ -161,13 +161,6 @@
                 </select>
             </div>
             
-            <div class="control-group">
-                <label for="section-select">Section:</label>
-                <select id="section-select" disabled>
-                    <option value="">-- Select a section --</option>
-                </select>
-            </div>
-            
             <button id="add-course">Add Course</button>
             <button id="generate-schedules" disabled>Generate Schedules</button>
         </div>
@@ -192,7 +185,6 @@
 
         // DOM elements
         const courseSelect = document.getElementById('course-select');
-        const sectionSelect = document.getElementById('section-select');
         const addCourseBtn = document.getElementById('add-course');
         const generateSchedulesBtn = document.getElementById('generate-schedules');
         const selectedCoursesDiv = document.getElementById('selected-courses');
@@ -222,7 +214,7 @@
             }
         }
 
-        // Initialize the course dropdown (same as before)
+        // Initialize the course dropdown
         function initializeCourseDropdown() {
             courseSelect.innerHTML = '<option value="">-- Select a course --</option>';
             Object.keys(scheduleData).forEach(course => {
@@ -233,41 +225,12 @@
             });
         }
 
-        // // Initialize the course dropdown
-        // function initializeCourseDropdown() {
-        //     courseSelect.innerHTML = '<option value="">-- Select a course --</option>';
-        //     Object.keys(scheduleData).forEach(course => {
-        //         const option = document.createElement('option');
-        //         option.value = course;
-        //         option.textContent = course;
-        //         courseSelect.appendChild(option);
-        //     });
-        // }
-
-        // Update the section dropdown based on selected course
-        courseSelect.addEventListener('change', function() {
-            const selectedCourse = this.value;
-            sectionSelect.innerHTML = '<option value="">-- Select a section --</option>';
-            sectionSelect.disabled = !selectedCourse;
-            
-            if (selectedCourse) {
-                const sections = Object.keys(scheduleData[selectedCourse]).filter(s => !s.match(/^\d+$/));
-                sections.forEach(section => {
-                    const option = document.createElement('option');
-                    option.value = section;
-                    option.textContent = section;
-                    sectionSelect.appendChild(option);
-                });
-            }
-        });
-
         // Add a course to the selection
         addCourseBtn.addEventListener('click', function() {
             const course = courseSelect.value;
-            const section = sectionSelect.value;
             
-            if (!course || !section) {
-                alert('Please select both a course and a section');
+            if (!course) {
+                alert('Please select a course');
                 return;
             }
             
@@ -279,25 +242,38 @@
             
             selectedCourses.push({
                 course,
-                section,
-                tutorials: getTutorialsForSection(course, section)
+                sections: getSectionsWithTutorials(course)
             });
             
             updateSelectedCoursesDisplay();
             courseSelect.value = '';
-            sectionSelect.value = '';
-            sectionSelect.disabled = true;
             generateSchedulesBtn.disabled = selectedCourses.length === 0;
         });
 
-        // Get tutorials for a given section
-        function getTutorialsForSection(course, section) {
-            return Object.keys(scheduleData[course])
-                .filter(key => key.startsWith(section) && key !== section)
-                .map(tutorial => ({
-                    name: tutorial,
-                    times: scheduleData[course][tutorial]
-                }));
+        // Get all sections with their tutorials for a course
+        function getSectionsWithTutorials(course) {
+            const sections = [];
+            
+            // Get all lecture sections (single letters)
+            const lectureSections = Object.keys(scheduleData[course]).filter(s => s.length === 1);
+            
+            lectureSections.forEach(lectureSection => {
+                // Find all tutorials for this lecture section
+                const tutorials = Object.keys(scheduleData[course])
+                    .filter(key => key.startsWith(lectureSection) && key !== lectureSection)
+                    .map(tutorial => ({
+                        name: tutorial,
+                        times: scheduleData[course][tutorial]
+                    }));
+                
+                sections.push({
+                    lecture: lectureSection,
+                    lectureTimes: scheduleData[course][lectureSection],
+                    tutorials: tutorials
+                });
+            });
+            
+            return sections;
         }
 
         // Update the display of selected courses
@@ -312,7 +288,7 @@
                 const courseDiv = document.createElement('div');
                 courseDiv.className = 'selected-course';
                 courseDiv.innerHTML = `
-                    ${course.course} - ${course.section}
+                    ${course.course}
                     <span class="remove-course" data-index="${index}">×</span>
                 `;
                 selectedCoursesDiv.appendChild(courseDiv);
@@ -352,28 +328,28 @@
             const courseOptions = courses.map(course => {
                 const options = [];
                 
-                // Always include the main section
-                const mainSectionTimes = scheduleData[course.course][course.section];
-                
-                // If there are tutorials, we need to combine with each one
-                if (course.tutorials.length > 0) {
-                    course.tutorials.forEach(tutorial => {
+                // For each lecture section of this course
+                course.sections.forEach(section => {
+                    // If there are tutorials, we need to combine with each one
+                    if (section.tutorials.length > 0) {
+                        section.tutorials.forEach(tutorial => {
+                            options.push({
+                                course: course.course,
+                                lecture: section.lecture,
+                                tutorial: tutorial.name,
+                                times: [...section.lectureTimes, ...tutorial.times]
+                            });
+                        });
+                    } else {
+                        // No tutorials, just use the lecture section
                         options.push({
                             course: course.course,
-                            section: course.section,
-                            tutorial: tutorial.name,
-                            times: [...mainSectionTimes, ...tutorial.times]
+                            lecture: section.lecture,
+                            tutorial: null,
+                            times: section.lectureTimes
                         });
-                    });
-                } else {
-                    // No tutorials, just use the main section
-                    options.push({
-                        course: course.course,
-                        section: course.section,
-                        tutorial: null,
-                        times: mainSectionTimes
-                    });
-                }
+                    }
+                });
                 
                 return options;
             });
@@ -440,6 +416,16 @@
             return days[day.toLowerCase()] || day.toLowerCase();
         }
 
+        // Convert time number to display format (e.g., 1130 -> 11:30)
+        function formatTime(timeNum) {
+            const timeStr = timeNum.toString().padStart(4, '0');
+            const hour = parseInt(timeStr.substring(0, 2));
+            const minute = timeStr.substring(2);
+            const period = hour >= 12 ? 'PM' : 'AM';
+            const displayHour = hour > 12 ? hour - 12 : hour;
+            return `${displayHour}:${minute} ${period}`;
+        }
+
         // Display the current schedule
         function updateScheduleDisplay() {
             if (allSchedules.length === 0) {
@@ -456,7 +442,7 @@
             const timeSlots = [];
             for (let hour = 8; hour <= 18; hour++) {
                 for (let minute = 0; minute < 60; minute += 30) {
-                    const time = `${hour.toString().padStart(2, '0')}${minute.toString().padStart(2, '0')}`;
+                    const time = hour * 100 + minute;
                     timeSlots.push(time);
                 }
             }
@@ -482,10 +468,7 @@
                 // Time label
                 const timeLabel = document.createElement('div');
                 timeLabel.className = 'time-header';
-                const hour = parseInt(time.substring(0, 2));
-                const minute = time.substring(2);
-                const displayTime = `${hour > 12 ? hour - 12 : hour}:${minute} ${hour >= 12 ? 'PM' : 'AM'}`;
-                timeLabel.textContent = displayTime;
+                timeLabel.textContent = formatTime(time);
                 scheduleDisplay.appendChild(timeLabel);
                 
                 // Day slots
@@ -499,14 +482,13 @@
                             const normalizedDay = normalizeDay(courseDay);
                             if (normalizedDay === day) {
                                 const [start, end] = courseTime.split('-').map(t => parseInt(t));
-                                const currentTime = parseInt(time);
                                 
-                                if (currentTime >= start && currentTime < end) {
+                                if (time >= start && time < end) {
                                     // Calculate duration in 30-minute blocks
-                                    const duration = Math.ceil((end - start) / 100) * 2;
+                                    const duration = Math.ceil((end - start) / 50);
                                     
                                     // Only create the block for the first time slot it covers
-                                    if (currentTime === start) {
+                                    if (time === start) {
                                         const courseBlock = document.createElement('div');
                                         courseBlock.className = 'course-block';
                                         courseBlock.style.backgroundColor = getCourseColor(course.course);
@@ -518,71 +500,76 @@
                                         
                                         const courseSection = document.createElement('div');
                                         courseSection.className = 'course-section';
-                                        courseSection.textContent = `${course.section}${course.tutorial ? '/' + course.tutorial : ''}`;
+                                        courseSection.textContent = `${course.lecture}${course.tutorial ? '/' + course.tutorial : ''}`;
+                                        
+                                        const courseTimeDisplay = document.createElement('div');
+                                        courseTimeDisplay.className = 'course-section';
+                                        courseTimeDisplay.textContent = `${formatTime(start)}-${formatTime(end)}`;
                                         
                                         courseBlock.appendChild(courseName);
                                         courseBlock.appendChild(courseSection);
+                                        courseBlock.appendChild(courseTimeDisplay);
                                         timeSlot.appendChild(courseBlock);
                                     }
                                 }
                             }
                         });
                     });
-                scheduleDisplay.appendChild(timeSlot);
+                    scheduleDisplay.appendChild(timeSlot);
+                });
             });
+            
+            // Update counter
+            scheduleCounter.textContent = `Schedule ${currentScheduleIndex + 1} of ${allSchedules.length}`;
+        }
+
+        // Get a consistent color for a course
+        function getCourseColor(courseName) {
+            const colors = [
+                '#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', 
+                '#1abc9c', '#d35400', '#34495e', '#16a085', '#c0392b'
+            ];
+            const index = Math.abs(hashCode(courseName)) % colors.length;
+            return colors[index];
+        }
+
+        // Simple string hash function
+        function hashCode(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash |= 0; // Convert to 32bit integer
+            }
+            return hash;
+        }
+
+        // Update navigation buttons
+        function updateScheduleNavButtons() {
+            prevScheduleBtn.disabled = currentScheduleIndex === 0;
+            nextScheduleBtn.disabled = currentScheduleIndex === allSchedules.length - 1;
+        }
+
+        // Navigate to previous schedule
+        prevScheduleBtn.addEventListener('click', function() {
+            if (currentScheduleIndex > 0) {
+                currentScheduleIndex--;
+                updateScheduleDisplay();
+                updateScheduleNavButtons();
+            }
         });
-        
-        // Update counter
-        scheduleCounter.textContent = `Schedule ${currentScheduleIndex + 1} of ${allSchedules.length}`;
-    }
 
-    // Get a consistent color for a course
-    function getCourseColor(courseName) {
-        const colors = [
-            '#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', 
-            '#1abc9c', '#d35400', '#34495e', '#16a085', '#c0392b'
-        ];
-        const index = Math.abs(hashCode(courseName)) % colors.length;
-        return colors[index];
-    }
+        // Navigate to next schedule
+        nextScheduleBtn.addEventListener('click', function() {
+            if (currentScheduleIndex < allSchedules.length - 1) {
+                currentScheduleIndex++;
+                updateScheduleDisplay();
+                updateScheduleNavButtons();
+            }
+        });
 
-    // Simple string hash function
-    function hashCode(str) {
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            const char = str.charCodeAt(i);
-            hash = ((hash << 5) - hash) + char;
-            hash |= 0; // Convert to 32bit integer
-        }
-        return hash;
-    }
-
-    // Update navigation buttons
-    function updateScheduleNavButtons() {
-        prevScheduleBtn.disabled = currentScheduleIndex === 0;
-        nextScheduleBtn.disabled = currentScheduleIndex === allSchedules.length - 1;
-    }
-
-    // Navigate to previous schedule
-    prevScheduleBtn.addEventListener('click', function() {
-        if (currentScheduleIndex > 0) {
-            currentScheduleIndex--;
-            updateScheduleDisplay();
-            updateScheduleNavButtons();
-        }
-    });
-
-    // Navigate to next schedule
-    nextScheduleBtn.addEventListener('click', function() {
-        if (currentScheduleIndex < allSchedules.length - 1) {
-            currentScheduleIndex++;
-            updateScheduleDisplay();
-            updateScheduleNavButtons();
-        }
-    });
-
-    // Initialize the app
-    loadScheduleData();
-    // initializeCourseDropdown();
-</script>
-</body> </html>
+        // Initialize the app
+        loadScheduleData();
+    </script>
+</body>
+</html>
