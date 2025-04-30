@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Schedule Builder</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: flex-end;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        select, button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .schedule-container {
+            margin-top: 30px;
+        }
+        .schedule-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .schedule-display {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1px;
+            background-color: #ddd;
+            border: 1px solid #ddd;
+        }
+        .time-header, .day-header {
+            background-color: #f0f0f0;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .time-header {
+            grid-column: 1;
+        }
+        .day-header {
+            grid-row: 1;
+        }
+        .time-slot {
+            background-color: white;
+            height: 40px;
+            position: relative;
+        }
+        .course-block {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 4px;
+            font-size: 12px;
+            color: white;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .course-name {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        .course-section {
+            font-size: 10px;
+        }
+        .selected-courses {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .selected-course {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            background-color: #e1f5fe;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        .remove-course {
+            margin-left: 5px;
+            cursor: pointer;
+            color: #f44336;
+            font-weight: bold;
+        }
+        .no-schedules {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>University Schedule Builder</h1>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="course-select">Select Course:</label>
+                <select id="course-select">
+                    <option value="">-- Select a course --</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="section-select">Section:</label>
+                <select id="section-select" disabled>
+                    <option value="">-- Select a section --</option>
+                </select>
+            </div>
+            
+            <button id="add-course">Add Course</button>
+            <button id="generate-schedules" disabled>Generate Schedules</button>
+        </div>
+        
+        <div class="selected-courses" id="selected-courses">
+            <p>No courses selected yet</p>
+        </div>
+        
+        <div class="schedule-container" id="schedule-container" style="display: none;">
+            <div class="schedule-nav">
+                <button id="prev-schedule" disabled>Previous</button>
+                <span id="schedule-counter">Schedule 1 of 1</span>
+                <button id="next-schedule" disabled>Next</button>
+            </div>
+            <div class="schedule-display" id="schedule-display"></div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data - in a real app, you would load this from a JSON file
+        let scheduleData = {};
+
+        // DOM elements
+        const courseSelect = document.getElementById('course-select');
+        const sectionSelect = document.getElementById('section-select');
+        const addCourseBtn = document.getElementById('add-course');
+        const generateSchedulesBtn = document.getElementById('generate-schedules');
+        const selectedCoursesDiv = document.getElementById('selected-courses');
+        const scheduleContainer = document.getElementById('schedule-container');
+        const scheduleDisplay = document.getElementById('schedule-display');
+        const prevScheduleBtn = document.getElementById('prev-schedule');
+        const nextScheduleBtn = document.getElementById('next-schedule');
+        const scheduleCounter = document.getElementById('schedule-counter');
+
+        // State
+        let selectedCourses = [];
+        let allSchedules = [];
+        let currentScheduleIndex = 0;
+
+        // Function to load JSON data
+        async function loadScheduleData() {
+            try {
+                const response = await fetch('course_schedules.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load schedule data');
+                }
+                scheduleData = await response.json();
+                initializeCourseDropdown();
+            } catch (error) {
+                console.error('Error loading schedule data:', error);
+                alert('Failed to load course schedules. Please try again later.');
+            }
+        }
+
+        // Initialize the course dropdown (same as before)
+        function initializeCourseDropdown() {
+            courseSelect.innerHTML = '<option value="">-- Select a course --</option>';
+            Object.keys(scheduleData).forEach(course => {
+                const option = document.createElement('option');
+                option.value = course;
+                option.textContent = course;
+                courseSelect.appendChild(option);
+            });
+        }
+
+        // // Initialize the course dropdown
+        // function initializeCourseDropdown() {
+        //     courseSelect.innerHTML = '<option value="">-- Select a course --</option>';
+        //     Object.keys(scheduleData).forEach(course => {
+        //         const option = document.createElement('option');
+        //         option.value = course;
+        //         option.textContent = course;
+        //         courseSelect.appendChild(option);
+        //     });
+        // }
+
+        // Update the section dropdown based on selected course
+        courseSelect.addEventListener('change', function() {
+            const selectedCourse = this.value;
+            sectionSelect.innerHTML = '<option value="">-- Select a section --</option>';
+            sectionSelect.disabled = !selectedCourse;
+            
+            if (selectedCourse) {
+                const sections = Object.keys(scheduleData[selectedCourse]).filter(s => !s.match(/^\d+$/));
+                sections.forEach(section => {
+                    const option = document.createElement('option');
+                    option.value = section;
+                    option.textContent = section;
+                    sectionSelect.appendChild(option);
+                });
+            }
+        });
+
+        // Add a course to the selection
+        addCourseBtn.addEventListener('click', function() {
+            const course = courseSelect.value;
+            const section = sectionSelect.value;
+            
+            if (!course || !section) {
+                alert('Please select both a course and a section');
+                return;
+            }
+            
+            // Check if this course is already selected
+            if (selectedCourses.some(c => c.course === course)) {
+                alert('This course is already in your selection');
+                return;
+            }
+            
+            selectedCourses.push({
+                course,
+                section,
+                tutorials: getTutorialsForSection(course, section)
+            });
+            
+            updateSelectedCoursesDisplay();
+            courseSelect.value = '';
+            sectionSelect.value = '';
+            sectionSelect.disabled = true;
+            generateSchedulesBtn.disabled = selectedCourses.length === 0;
+        });
+
+        // Get tutorials for a given section
+        function getTutorialsForSection(course, section) {
+            return Object.keys(scheduleData[course])
+                .filter(key => key.startsWith(section) && key !== section)
+                .map(tutorial => ({
+                    name: tutorial,
+                    times: scheduleData[course][tutorial]
+                }));
+        }
+
+        // Update the display of selected courses
+        function updateSelectedCoursesDisplay() {
+            if (selectedCourses.length === 0) {
+                selectedCoursesDiv.innerHTML = '<p>No courses selected yet</p>';
+                return;
+            }
+            
+            selectedCoursesDiv.innerHTML = '<h3>Selected Courses:</h3>';
+            selectedCourses.forEach((course, index) => {
+                const courseDiv = document.createElement('div');
+                courseDiv.className = 'selected-course';
+                courseDiv.innerHTML = `
+                    ${course.course} - ${course.section}
+                    <span class="remove-course" data-index="${index}">×</span>
+                `;
+                selectedCoursesDiv.appendChild(courseDiv);
+            });
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-course').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    selectedCourses.splice(index, 1);
+                    updateSelectedCoursesDisplay();
+                    generateSchedulesBtn.disabled = selectedCourses.length === 0;
+                    scheduleContainer.style.display = 'none';
+                });
+            });
+        }
+
+        // Generate all possible schedules
+        generateSchedulesBtn.addEventListener('click', function() {
+            allSchedules = generateAllSchedules(selectedCourses);
+            currentScheduleIndex = 0;
+            
+            if (allSchedules.length === 0) {
+                scheduleContainer.style.display = 'none';
+                alert('No conflict-free schedules found for the selected courses');
+                return;
+            }
+            
+            scheduleContainer.style.display = 'block';
+            updateScheduleDisplay();
+            updateScheduleNavButtons();
+        });
+
+        // Generate all possible conflict-free schedules
+        function generateAllSchedules(courses) {
+            // First, generate all possible section/tutorial combinations for each course
+            const courseOptions = courses.map(course => {
+                const options = [];
+                
+                // Always include the main section
+                const mainSectionTimes = scheduleData[course.course][course.section];
+                
+                // If there are tutorials, we need to combine with each one
+                if (course.tutorials.length > 0) {
+                    course.tutorials.forEach(tutorial => {
+                        options.push({
+                            course: course.course,
+                            section: course.section,
+                            tutorial: tutorial.name,
+                            times: [...mainSectionTimes, ...tutorial.times]
+                        });
+                    });
+                } else {
+                    // No tutorials, just use the main section
+                    options.push({
+                        course: course.course,
+                        section: course.section,
+                        tutorial: null,
+                        times: mainSectionTimes
+                    });
+                }
+                
+                return options;
+            });
+            
+            // Now generate all possible combinations of these options
+            const allCombinations = cartesianProduct(...courseOptions);
+            
+            // Filter out combinations with time conflicts
+            return allCombinations.filter(combination => !hasTimeConflict(combination));
+        }
+
+        // Cartesian product of arrays
+        function cartesianProduct(...arrays) {
+            return arrays.reduce((a, b) => 
+                a.flatMap(d => 
+                    b.map(e => [d, e].flat())
+                ), [[]]);
+        }
+
+        // Check if a schedule has time conflicts
+        function hasTimeConflict(schedule) {
+            const timeSlots = [];
+            
+            // Convert all time slots to a common format for comparison
+            for (const course of schedule) {
+                for (const [day, time] of course.times) {
+                    const [start, end] = time.split('-').map(t => parseInt(t));
+                    timeSlots.push({
+                        day: normalizeDay(day),
+                        start,
+                        end
+                    });
+                }
+            }
+            
+            // Check for overlaps
+            for (let i = 0; i < timeSlots.length; i++) {
+                for (let j = i + 1; j < timeSlots.length; j++) {
+                    const a = timeSlots[i];
+                    const b = timeSlots[j];
+                    
+                    if (a.day === b.day && 
+                        ((a.start >= b.start && a.start < b.end) || 
+                         (b.start >= a.start && b.start < a.end))) {
+                        return true; // Conflict found
+                    }
+                }
+            }
+            
+            return false; // No conflicts
+        }
+
+        // Normalize day abbreviations
+        function normalizeDay(day) {
+            const days = {
+                'lun': 'mon',
+                'mar': 'tue',
+                'mer': 'wed',
+                'jeu': 'thu',
+                'ven': 'fri',
+                'sam': 'sat',
+                'dim': 'sun'
+            };
+            return days[day.toLowerCase()] || day.toLowerCase();
+        }
+
+        // Display the current schedule
+        function updateScheduleDisplay() {
+            if (allSchedules.length === 0) {
+                scheduleDisplay.innerHTML = '<div class="no-schedules">No schedules found</div>';
+                return;
+            }
+            
+            const currentSchedule = allSchedules[currentScheduleIndex];
+            
+            // Clear previous display
+            scheduleDisplay.innerHTML = '';
+            
+            // Create time slots (8:00 AM to 6:00 PM in 30-minute increments)
+            const timeSlots = [];
+            for (let hour = 8; hour <= 18; hour++) {
+                for (let minute = 0; minute < 60; minute += 30) {
+                    const time = `${hour.toString().padStart(2, '0')}${minute.toString().padStart(2, '0')}`;
+                    timeSlots.push(time);
+                }
+            }
+            
+            // Create grid headers
+            // Time column header
+            const timeHeader = document.createElement('div');
+            timeHeader.className = 'time-header';
+            timeHeader.textContent = 'Time';
+            scheduleDisplay.appendChild(timeHeader);
+            
+            // Day headers
+            const days = ['mon', 'tue', 'wed', 'thu', 'fri'];
+            days.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = day.toUpperCase();
+                scheduleDisplay.appendChild(dayHeader);
+            });
+            
+            // Create time slots
+            timeSlots.forEach((time, timeIndex) => {
+                // Time label
+                const timeLabel = document.createElement('div');
+                timeLabel.className = 'time-header';
+                const hour = parseInt(time.substring(0, 2));
+                const minute = time.substring(2);
+                const displayTime = `${hour > 12 ? hour - 12 : hour}:${minute} ${hour >= 12 ? 'PM' : 'AM'}`;
+                timeLabel.textContent = displayTime;
+                scheduleDisplay.appendChild(timeLabel);
+                
+                // Day slots
+                days.forEach(day => {
+                    const timeSlot = document.createElement('div');
+                    timeSlot.className = 'time-slot';
+                    
+                    // Check if any course is scheduled at this time
+                    currentSchedule.forEach(course => {
+                        course.times.forEach(([courseDay, courseTime]) => {
+                            const normalizedDay = normalizeDay(courseDay);
+                            if (normalizedDay === day) {
+                                const [start, end] = courseTime.split('-').map(t => parseInt(t));
+                                const currentTime = parseInt(time);
+                                
+                                if (currentTime >= start && currentTime < end) {
+                                    // Calculate duration in 30-minute blocks
+                                    const duration = Math.ceil((end - start) / 100) * 2;
+                                    
+                                    // Only create the block for the first time slot it covers
+                                    if (currentTime === start) {
+                                        const courseBlock = document.createElement('div');
+                                        courseBlock.className = 'course-block';
+                                        courseBlock.style.backgroundColor = getCourseColor(course.course);
+                                        courseBlock.style.gridRow = `span ${duration}`;
+                                        
+                                        const courseName = document.createElement('div');
+                                        courseName.className = 'course-name';
+                                        courseName.textContent = course.course;
+                                        
+                                        const courseSection = document.createElement('div');
+                                        courseSection.className = 'course-section';
+                                        courseSection.textContent = `${course.section}${course.tutorial ? '/' + course.tutorial : ''}`;
+                                        
+                                        courseBlock.appendChild(courseName);
+                                        courseBlock.appendChild(courseSection);
+                                        timeSlot.appendChild(courseBlock);
+                                    }
+                                }
+                            }
+                        });
+                    });
+                scheduleDisplay.appendChild(timeSlot);
+            });
+        });
+        
+        // Update counter
+        scheduleCounter.textContent = `Schedule ${currentScheduleIndex + 1} of ${allSchedules.length}`;
+    }
+
+    // Get a consistent color for a course
+    function getCourseColor(courseName) {
+        const colors = [
+            '#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', 
+            '#1abc9c', '#d35400', '#34495e', '#16a085', '#c0392b'
+        ];
+        const index = Math.abs(hashCode(courseName)) % colors.length;
+        return colors[index];
+    }
+
+    // Simple string hash function
+    function hashCode(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+    }
+
+    // Update navigation buttons
+    function updateScheduleNavButtons() {
+        prevScheduleBtn.disabled = currentScheduleIndex === 0;
+        nextScheduleBtn.disabled = currentScheduleIndex === allSchedules.length - 1;
+    }
+
+    // Navigate to previous schedule
+    prevScheduleBtn.addEventListener('click', function() {
+        if (currentScheduleIndex > 0) {
+            currentScheduleIndex--;
+            updateScheduleDisplay();
+            updateScheduleNavButtons();
+        }
+    });
+
+    // Navigate to next schedule
+    nextScheduleBtn.addEventListener('click', function() {
+        if (currentScheduleIndex < allSchedules.length - 1) {
+            currentScheduleIndex++;
+            updateScheduleDisplay();
+            updateScheduleNavButtons();
+        }
+    });
+
+    // Initialize the app
+    loadScheduleData();
+    // initializeCourseDropdown();
+</script>
+</body> </html>
