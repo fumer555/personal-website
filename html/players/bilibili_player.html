@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义弹幕视频播放器</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .player-container {
+            width: 800px;
+            position: relative;
+            background-color: #000;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        #video {
+            width: 100%;
+            display: block;
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .controls {
+            background-color: #222;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-radius: 0 0 4px 4px;
+        }
+        
+        .progress-container {
+            flex-grow: 1;
+            height: 4px;
+            background-color: #444;
+            margin: 0 10px;
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        #progress {
+            height: 100%;
+            background-color: #00a1d6;
+            border-radius: 2px;
+            width: 0%;
+        }
+        
+        .time {
+            color: #fff;
+            font-size: 12px;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 5px;
+            outline: none;
+        }
+        
+        button:hover {
+            color: #00a1d6;
+        }
+        
+        .volume-container {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+        
+        #volume {
+            width: 60px;
+            margin-left: 5px;
+        }
+        
+        .danmu-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 54px);
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .danmu {
+            position: absolute;
+            white-space: nowrap;
+            font-size: 20px;
+            text-shadow: 1px 1px 2px #000;
+            pointer-events: none;
+            user-select: none;
+            will-change: transform;
+        }
+        
+        .config-panel {
+            width: 800px;
+            background-color: #fff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="text"], input[type="file"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        button.action-btn {
+            background-color: #00a1d6;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        
+        button.action-btn:hover {
+            background-color: #0087b0;
+        }
+        
+        .danmu-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>自定义弹幕视频播放器</h1>
+    
+    <div class="player-container">
+        <video id="video"></video>
+        <div class="danmu-container" id="danmuContainer"></div>
+        <div class="controls">
+            <button id="playBtn">▶</button>
+            <div class="progress-container" id="progressContainer">
+                <div id="progress"></div>
+            </div>
+            <div class="time" id="time">00:00 / 00:00</div>
+            <button id="fullscreenBtn">⛶</button>
+            <div class="volume-container">
+                <button id="volumeBtn">🔊</button>
+                <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+            </div>
+        </div>
+    </div>
+    
+    <div class="config-panel">
+        <div class="form-group">
+            <label for="videoFile">视频文件:</label>
+            <input type="file" id="videoFile" accept="video/*">
+        </div>
+        
+        <div class="form-group">
+            <label for="danmuInput">添加弹幕 (格式: 时间(秒),模式,颜色,内容):</label>
+            <textarea id="danmuInput" placeholder="例如: 10,1,16777215,这是一条弹幕"></textarea>
+            <small>模式: 1=滚动 4=底部 5=顶部 | 颜色: 十进制RGB值(如16777215=白色)</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="danmuFile">或上传弹幕XML文件:</label>
+            <input type="file" id="danmuFile" accept=".xml">
+        </div>
+        
+        <div class="danmu-controls">
+            <div>
+                <button class="action-btn" id="addDanmuBtn">添加弹幕</button>
+                <button class="action-btn" id="clearDanmuBtn">清除弹幕</button>
+            </div>
+            <div>
+                <button class="action-btn" id="toggleDanmuBtn">弹幕开</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const video = document.getElementById('video');
+        const playBtn = document.getElementById('playBtn');
+        const progress = document.getElementById('progress');
+        const progressContainer = document.getElementById('progressContainer');
+        const timeDisplay = document.getElementById('time');
+        const volumeBtn = document.getElementById('volumeBtn');
+        const volumeSlider = document.getElementById('volume');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const danmuContainer = document.getElementById('danmuContainer');
+        const videoFileInput = document.getElementById('videoFile');
+        const danmuInput = document.getElementById('danmuInput');
+        const danmuFileInput = document.getElementById('danmuFile');
+        const addDanmuBtn = document.getElementById('addDanmuBtn');
+        const clearDanmuBtn = document.getElementById('clearDanmuBtn');
+        const toggleDanmuBtn = document.getElementById('toggleDanmuBtn');
+        
+        // 弹幕数据
+        let danmus = [];
+        let isDanmuEnabled = true;
+        
+        // 初始化播放器
+        function initPlayer() {
+            // 播放/暂停
+            playBtn.addEventListener('click', togglePlay);
+            video.addEventListener('click', togglePlay);
+            
+            // 进度条
+            video.addEventListener('timeupdate', updateProgress);
+            progressContainer.addEventListener('click', setProgress);
+            
+            // 音量控制
+            volumeBtn.addEventListener('click', toggleMute);
+            volumeSlider.addEventListener('input', setVolume);
+            
+            // 全屏
+            fullscreenBtn.addEventListener('click', toggleFullscreen);
+            
+            // 文件加载
+            videoFileInput.addEventListener('change', loadVideo);
+            danmuFileInput.addEventListener('change', loadDanmuFile);
+            
+            // 弹幕控制
+            addDanmuBtn.addEventListener('click', addDanmuFromInput);
+            clearDanmuBtn.addEventListener('click', clearDanmus);
+            toggleDanmuBtn.addEventListener('click', toggleDanmu);
+            
+            // 添加seek事件监听
+            video.addEventListener('seeked', handleSeek);
+            
+            // 初始化音量
+            video.volume = volumeSlider.value;
+            
+            // 开始弹幕渲染循环
+            requestAnimationFrame(renderDanmus);
+        }
+        
+        // 播放/暂停切换
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+                playBtn.textContent = '❚❚';
+            } else {
+                video.pause();
+                playBtn.textContent = '▶';
+            }
+        }
+        
+        // 更新进度条
+        function updateProgress() {
+            const percent = (video.currentTime / video.duration) * 100;
+            progress.style.width = `${percent}%`;
+            
+            // 更新时间显示
+            const currentTime = formatTime(video.currentTime);
+            const duration = formatTime(video.duration);
+            timeDisplay.textContent = `${currentTime} / ${duration}`;
+        }
+        
+        // 设置进度
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = video.duration;
+            video.currentTime = (clickX / width) * duration;
+        }
+        
+        // 处理seek事件
+        function handleSeek() {
+            clearActiveDanmus();
+            checkDanmuAtCurrentTime();
+        }
+        
+        // 清除所有活跃弹幕
+        function clearActiveDanmus() {
+            const activeDanmus = document.querySelectorAll('.danmu');
+            activeDanmus.forEach(danmu => {
+                danmu.remove();
+            });
+            
+            // 重置所有弹幕的displayed状态
+            danmus.forEach(danmu => {
+                danmu.displayed = false;
+            });
+        }
+        
+        // 静音切换
+        function toggleMute() {
+            video.muted = !video.muted;
+            volumeBtn.textContent = video.muted ? '🔇' : '🔊';
+            volumeSlider.value = video.muted ? 0 : video.volume;
+        }
+        
+        // 设置音量
+        function setVolume() {
+            video.volume = this.value;
+            video.muted = this.value == 0;
+            volumeBtn.textContent = this.value == 0 ? '🔇' : '🔊';
+        }
+        
+        // 全屏切换
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                video.requestFullscreen().catch(err => {
+                    alert(`全屏错误: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+        
+        // 加载视频
+        function loadVideo() {
+            const file = videoFileInput.files[0];
+            if (file) {
+                const videoURL = URL.createObjectURL(file);
+                video.src = videoURL;
+                video.load();
+            }
+        }
+        
+        // 加载弹幕XML文件
+        function loadDanmuFile() {
+            const file = danmuFileInput.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const xmlText = e.target.result;
+                parseDanmuXML(xmlText);
+            };
+            reader.readAsText(file);
+        }
+        
+        // 解析弹幕XML
+        function parseDanmuXML(xmlText) {
+            // 简单的XML解析（实际应用中应该使用DOMParser）
+            const danmuRegex = /<d p="([^"]+)">([^<]+)<\/d>/g;
+            let match;
+            danmus = [];
+            
+            while ((match = danmuRegex.exec(xmlText)) !== null) {
+                const params = match[1].split(',');
+                const text = match[2].trim();
+                
+                if (params.length >= 8 && text) {
+                    danmus.push({
+                        time: parseFloat(params[0]),
+                        mode: parseInt(params[1]),
+                        fontSize: parseInt(params[2]),
+                        color: parseInt(params[3]),
+                        timestamp: parseInt(params[4]),
+                        pool: parseInt(params[5]),
+                        senderHash: params[6],
+                        dbID: params[7],
+                        text: text,
+                        displayed: false
+                    });
+                }
+            }
+            
+            alert(`成功加载 ${danmus.length} 条弹幕`);
+        }
+        
+        // 从输入框添加弹幕
+        function addDanmuFromInput() {
+            const inputText = danmuInput.value.trim();
+            if (!inputText) return;
+            
+            const lines = inputText.split('\n');
+            lines.forEach(line => {
+                const parts = line.split(',');
+                if (parts.length >= 4) {
+                    danmus.push({
+                        time: parseFloat(parts[0]),
+                        mode: parseInt(parts[1]),
+                        color: parseInt(parts[2]),
+                        text: parts.slice(3).join(',').trim(),
+                        fontSize: 25, // 默认大小
+                        timestamp: Math.floor(Date.now() / 1000),
+                        pool: 0,
+                        senderHash: Math.random().toString(16).substr(2, 8),
+                        dbID: Math.random().toString(16).substr(2, 16),
+                        displayed: false
+                    });
+                }
+            });
+            
+            alert(`成功添加 ${lines.length} 条弹幕`);
+            danmuInput.value = '';
+        }
+        
+        // 清除所有弹幕
+        function clearDanmus() {
+            danmus = [];
+            danmuContainer.innerHTML = '';
+        }
+        
+        // 切换弹幕显示
+        function toggleDanmu() {
+            isDanmuEnabled = !isDanmuEnabled;
+            toggleDanmuBtn.textContent = isDanmuEnabled ? '弹幕开' : '弹幕关';
+            danmuContainer.style.opacity = isDanmuEnabled ? '1' : '0';
+        }
+        
+        // 检查当前时间点的弹幕
+        function checkDanmuAtCurrentTime() {
+            if (!isDanmuEnabled || !video.duration) return;
+            
+            const currentTime = video.currentTime;
+            const containerWidth = danmuContainer.clientWidth;
+            const containerHeight = danmuContainer.clientHeight;
+            
+            danmus.forEach(danmu => {
+                if (Math.abs(danmu.time - currentTime) < 0.1 && !danmu.displayed) {
+                    danmu.displayed = true;
+                    
+                    // 创建弹幕元素
+                    const danmuElement = document.createElement('div');
+                    danmuElement.className = 'danmu';
+                    danmuElement.textContent = danmu.text;
+                    danmuElement.style.color = `#${danmu.color.toString(16).padStart(6, '0')}`;
+                    danmuElement.style.fontSize = `${danmu.fontSize}px`;
+                    
+                    // 根据模式设置弹幕位置和动画
+                    switch (danmu.mode) {
+                        case 1: // 滚动弹幕
+                            danmuElement.style.top = `${Math.random() * (containerHeight - danmu.fontSize)}px`;
+                            danmuElement.style.left = `${containerWidth}px`;
+                            danmuElement.isActive = true;
+                            
+                            danmuContainer.appendChild(danmuElement);
+                            
+                            // 获取弹幕宽度
+                            const danmuWidth = danmuElement.offsetWidth;
+                            
+                            // 动画
+                            const duration = Math.max(5, 10 - (danmuWidth / containerWidth) * 5);
+                            danmuElement.style.transition = `transform ${duration}s linear`;
+                            danmuElement.style.transform = `translateX(-${containerWidth + danmuWidth}px)`;
+                            
+                            setTimeout(() => {
+                                danmuElement.isActive = false;
+                            }, duration * 1000);
+                            break;
+                            
+                        case 4: // 底部固定弹幕
+                            danmuElement.style.bottom = '10px';
+                            danmuElement.style.left = '50%';
+                            danmuElement.style.transform = 'translateX(-50%)';
+                            danmuElement.isActive = true;
+                            
+                            danmuContainer.appendChild(danmuElement);
+                            
+                            setTimeout(() => {
+                                danmuElement.isActive = false;
+                            }, 3000);
+                            break;
+                            
+                        case 5: // 顶部固定弹幕
+                            danmuElement.style.top = '10px';
+                            danmuElement.style.left = '50%';
+                            danmuElement.style.transform = 'translateX(-50%)';
+                            danmuElement.isActive = true;
+                            
+                            danmuContainer.appendChild(danmuElement);
+                            
+                            setTimeout(() => {
+                                danmuElement.isActive = false;
+                            }, 3000);
+                            break;
+                    }
+                }
+            });
+        }
+        
+        // 渲染弹幕
+        function renderDanmus() {
+            if (!isDanmuEnabled || !video.duration) {
+                requestAnimationFrame(renderDanmus);
+                return;
+            }
+            
+            // 清除非活跃弹幕
+            const oldDanmus = document.querySelectorAll('.danmu');
+            oldDanmus.forEach(danmu => {
+                if (!danmu.isActive) {
+                    danmu.remove();
+                }
+            });
+            
+            // 检查当前时间点的弹幕
+            checkDanmuAtCurrentTime();
+            
+            requestAnimationFrame(renderDanmus);
+        }
+        
+        // 格式化时间 (秒 -> MM:SS)
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        // 初始化播放器
+        initPlayer();
+    </script>
+</body>
+</html>
