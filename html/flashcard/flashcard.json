@@ -1,0 +1,1377 @@
+[
+  {
+    "english_term": "2 1/2-D sketch",
+    "chinese_term": "2 1/2 维简图",
+    "definition": "Marr's proposal for a visual representation that identifies where surfaces are located in space relative to the viewer."
+  },
+  {
+    "english_term": "3-D model",
+    "chinese_term": "3-D 模型",
+    "definition": "Marr's proposal for an object-centered representation of a visual scene."
+  },
+  {
+    "english_term": "abstraction theory",
+    "chinese_term": "抽象理论",
+    "definition": "A theory holding that concepts are represented as abstract descriptions of their central tendencies. Contrast with instance theory."
+  },
+  {
+    "english_term": "ACT (Adaptive Control of Thought)",
+    "chinese_term": "ACT (思维的自适应控制)",
+    "definition": "Anderson's theory of how declarative knowledge and procedural knowledge interact in complex cognitive processes."
+  },
+  {
+    "english_term": "action potential",
+    "chinese_term": "动作电位",
+    "definition": "The sudden change in electric potential that travels down the axon of a neuron."
+  },
+  {
+    "english_term": "activation",
+    "chinese_term": "激活",
+    "definition": "A state of memory traces that determines both the speed and the probability of access to a memory trace."
+  },
+  {
+    "english_term": "affirmation of the consequent",
+    "chinese_term": "肯定后件",
+    "definition": "The logical fallacy that one can reason from the affirmation of the consequent of a conditional statement to the affirmation of its antecedent: If A, then B and B is true together can be thought (falsely) to imply A is true."
+  },
+  {
+    "english_term": "AI",
+    "chinese_term": "人工智能",
+    "definition": "See artificial intelligence."
+  },
+  {
+    "english_term": "allocentric representation",
+    "chinese_term": "他我中心表征",
+    "definition": "A representation of the environment according to a fixed coordinate system. Contrast with egocentric representation."
+  },
+  {
+    "english_term": "amnesia",
+    "chinese_term": "遗忘症",
+    "definition": "A memory deficit due to brain damage. See also anterograde amnesia; retrograde amnesia; Korsakoff syndrome."
+  },
+  {
+    "english_term": "amodal hypothesis",
+    "chinese_term": "通道无关假设",
+    "definition": "The proposal that meaning is not represented in a particular modality. Contrast with multimodal hypothesis."
+  },
+  {
+    "english_term": "amodal symbol system",
+    "chinese_term": "通道无关符号系统",
+    "definition": "The proposal that information is represented by symbols that are not associated with a particular modality. Contrast with perceptual symbol system."
+  },
+  {
+    "english_term": "analogy",
+    "chinese_term": "类比",
+    "definition": "The process by which a problem solver maps the solution for one problem into a solution for another problem."
+  },
+  {
+    "english_term": "antecedent",
+    "chinese_term": "前件",
+    "definition": "The condition of a conditional statement; that is, the A in If A, then B."
+  },
+  {
+    "english_term": "anterior cingulate cortex (ACC)",
+    "chinese_term": "前扣带回皮层",
+    "definition": "Medial portion of the prefrontal cortex important in control and dealing with conflict."
+  },
+  {
+    "english_term": "anterograde amnesia",
+    "chinese_term": "顺行性遗忘症",
+    "definition": "Loss of the ability to learn new things after an injury. Contrast with retrograde amnesia."
+  },
+  {
+    "english_term": "aphasia",
+    "chinese_term": "失语症",
+    "definition": "An impairment of speech that results from a brain injury."
+  },
+  {
+    "english_term": "apperceptive agnosia",
+    "chinese_term": "统觉失认症",
+    "definition": "A form of visual agnosia marked by the inability to recognize simple shapes such as circles and triangles."
+  },
+  {
+    "english_term": "arguments",
+    "chinese_term": "项",
+    "definition": "An element of a propositional representation that corresponds to a time, place, person, or object."
+  },
+  {
+    "english_term": "articulatory loop",
+    "chinese_term": "发音回路",
+    "definition": "Baddeley's proposed system for rehearsing verbal information."
+  },
+  {
+    "english_term": "artificial intelligence (AI)",
+    "chinese_term": "人工智能",
+    "definition": "A field of computer science that attempts to develop programs that will enable machines to display intelligent behavior."
+  },
+  {
+    "english_term": "associative agnosia",
+    "chinese_term": "联想失认症",
+    "definition": "A form of visual agnosia marked by the inability to recognize complex objects such as an anchor, even though the patient can recognize simple shapes and can copy drawings of complex objects."
+  },
+  {
+    "english_term": "associative spreading",
+    "chinese_term": "联想扩散",
+    "definition": "Facilitation in access to information when closely related items are presented."
+  },
+  {
+    "english_term": "associative stage",
+    "chinese_term": "关联阶段",
+    "definition": "The second of Fitts's stages of skill acquisition, in which the declarative representation of a skill is converted into a procedural representation."
+  },
+  {
+    "english_term": "atmosphere hypothesis",
+    "chinese_term": "氛围假说",
+    "definition": "The proposal by Woodworth and Sells that, when faced with a categorical syllogism, people tend to accept conclusions having the same quantifiers as those of the premises."
+  },
+  {
+    "english_term": "attention",
+    "chinese_term": "注意",
+    "definition": "The allocation of cognitive resources among ongoing processes."
+  },
+  {
+    "english_term": "attenuation theory",
+    "chinese_term": "衰减理论",
+    "definition": "Treisman's theory of attention, which proposes that we weaken some incoming sensory signals on the basis of their physical characteristics."
+  },
+  {
+    "english_term": "attribute identification",
+    "chinese_term": "特征识别",
+    "definition": "The problem of determining what attributes are relevant to the formation of a hypothesis. See also rule learning."
+  },
+  {
+    "english_term": "auditory sensory store",
+    "chinese_term": "听感觉存储",
+    "definition": "A memory system that effectively holds all the information heard for a brief period of time. Also called echoic memory."
+  },
+  {
+    "english_term": "automaticity",
+    "chinese_term": "自动化",
+    "definition": "The ability to perform a task with little or no central cognitive control."
+  },
+  {
+    "english_term": "autonomous stage",
+    "chinese_term": "自主阶段",
+    "definition": "The third of Fitts's stages of skill acquisition, in which the performance of a skill becomes automated."
+  },
+  {
+    "english_term": "axon",
+    "chinese_term": "轴突",
+    "definition": "The part of a neuron that carries information from one region of the brain to another."
+  },
+  {
+    "english_term": "backup avoidance",
+    "chinese_term": "回溯规避",
+    "definition": "The tendency in problem solving to avoid operators that take one back to a state already visited."
+  },
+  {
+    "english_term": "backward inference",
+    "chinese_term": "跨桥（或逆向）推理",
+    "definition": "See bridging inference."
+  },
+  {
+    "english_term": "bar detectors",
+    "chinese_term": "直条觉察器",
+    "definition": "A cell in the visual cortex that responds most to bars in the visual field. Compare edge detector."
+  },
+  {
+    "english_term": "basal ganglia",
+    "chinese_term": "基底神经节",
+    "definition": "Subcortical nuclei that play a critical role in the control of motor movement and cognition."
+  },
+  {
+    "english_term": "Bayes's theorem",
+    "chinese_term": "贝叶斯定理",
+    "definition": "A theorem that prescribes how to combine the prior probability of a hypothesis with the conditional probability of the evidence, given the hypothesis, to assess the posterior probability of the hypothesis, given the evidence."
+  },
+  {
+    "english_term": "behaviorism",
+    "chinese_term": "行为主义",
+    "definition": "The theory that psychology should be concerned only with behavior and should not refer to mental constructs underlying behavior."
+  },
+  {
+    "english_term": "binding problem",
+    "chinese_term": "捆绑问题",
+    "definition": "The question of how the brain determines which features in the visual field go together to form an object."
+  },
+  {
+    "english_term": "blood oxygen level dependent (BOLD) response",
+    "chinese_term": "血氧水平依赖（BOLD）响应",
+    "definition": "A measure obtained in fMRI studies of the amount of oxygen in the blood."
+  },
+  {
+    "english_term": "bottom-up processing",
+    "chinese_term": "自下而上加工",
+    "definition": "The processing of a stimulus in which information from a physical stimulus, rather than from general context, is used to help recognize the stimulus. Contrast with top-down processing."
+  },
+  {
+    "english_term": "bridging inference",
+    "chinese_term": "跨桥（或逆向）推理",
+    "definition": "In sentence comprehension, an inference that connects the sentence to the prior context. Contrast with elaborative inference."
+  },
+  {
+    "english_term": "Broca's area",
+    "chinese_term": "布罗卡区",
+    "definition": "A region in the left frontal cortex that is important for processing language, particularly syntax in speech."
+  },
+  {
+    "english_term": "categorical perception",
+    "chinese_term": "类别性知觉",
+    "definition": "The perception of stimuli being in distinct categories without gradual variations."
+  },
+  {
+    "english_term": "categorical syllogism",
+    "chinese_term": "直言三段论",
+    "definition": "A syllogism consisting of statements that have logical quantifiers in which one premise relates A to B, another relates B to C, and the conclusion relates A to C."
+  },
+  {
+    "english_term": "center-embedded sentences",
+    "chinese_term": "中心嵌入句",
+    "definition": "A sentence in which one clause is embedded within another; for example, The boy whom the girl liked was sick."
+  },
+  {
+    "english_term": "central bottleneck",
+    "chinese_term": "中枢瓶颈",
+    "definition": "The inability of central cognition to pursue multiple lines of thought simultaneously. Contrast with perfect time-sharing."
+  },
+  {
+    "english_term": "central executive",
+    "chinese_term": "中枢执行系统",
+    "definition": "Baddeley's proposed system for controlling various slave rehearsal systems, such as the articulatory loop and the visuospatial sketchpad."
+  },
+  {
+    "english_term": "cognitive maps",
+    "chinese_term": "认知地图",
+    "definition": "A mental representation of the locations of objects and places in the environment. See also route map; survey map."
+  },
+  {
+    "english_term": "cognitive neuroscience",
+    "chinese_term": "认知神经科学",
+    "definition": "The study of the neural basis of cognition."
+  },
+  {
+    "english_term": "cognitive psychology",
+    "chinese_term": "认知心理学",
+    "definition": "The scientific study of cognition."
+  },
+  {
+    "english_term": "cognitive stage",
+    "chinese_term": "认知阶段",
+    "definition": "The first of Fitts's stages of skill acquisition, in which the declarative encoding of a skill is developed and used."
+  },
+  {
+    "english_term": "competence",
+    "chinese_term": "能力",
+    "definition": "A term in linguistics that refers to a person's abstract knowledge of a language, which is not always manifested in performance."
+  },
+  {
+    "english_term": "componential analyses",
+    "chinese_term": "成分分析",
+    "definition": "An approach to instruction that begins with an analysis of the individual elements that need to be learned."
+  },
+  {
+    "english_term": "concrete-operational stage",
+    "chinese_term": "具体运算阶段",
+    "definition": "The third of Piaget's four stages of development, during which a child has systematic schemes for thinking about the physical world."
+  },
+  {
+    "english_term": "conditional probability",
+    "chinese_term": "条件概率",
+    "definition": "In the context of Bayes's theorem, the probability that a particular piece of evidence will be found if a hypothesis is true."
+  },
+  {
+    "english_term": "conditional statement",
+    "chinese_term": "条件命题",
+    "definition": "An assertion that, if an antecedent is true, then a consequent must be true: a statement of the form If A, then B."
+  },
+  {
+    "english_term": "confirmation bias",
+    "chinese_term": "证实偏向",
+    "definition": "The tendency to seek evidence that is consistent with one's current hypothesis."
+  },
+  {
+    "english_term": "consequent",
+    "chinese_term": "后件",
+    "definition": "The result of a conditional statement; the B in If A, then B."
+  },
+  {
+    "english_term": "conservation",
+    "chinese_term": "守恒",
+    "definition": "A term used by Piaget to refer to the particular properties of objects that are preserved under certain transformations."
+  },
+  {
+    "english_term": "consonantal feature",
+    "chinese_term": "辅音特征",
+    "definition": "A consonant-like quality in a phoneme."
+  },
+  {
+    "english_term": "constituent",
+    "chinese_term": "成分",
+    "definition": "A subpattern that corresponds to a basic phrase, or unit, in a sentence’s surface structure."
+  },
+  {
+    "english_term": "corpus callosum",
+    "chinese_term": "胼胝体",
+    "definition": "A broad band of fibers that enables communication between the left and the right hemispheres of the brain."
+  },
+  {
+    "english_term": "crystallized intelligence",
+    "chinese_term": "晶态智力",
+    "definition": "Cattell’s term for the factor in intelligence that depends on acquired knowledge."
+  },
+  {
+    "english_term": "decay theory",
+    "chinese_term": "消退理论",
+    "definition": "The theory that forgetting is caused by the spontaneous decay of memory traces over time. Contrast with Interference theory."
+  },
+  {
+    "english_term": "deductive reasoning",
+    "chinese_term": "演绎推理",
+    "definition": "Reasoning in which the conclusions can be determined to follow with certainty from the premises."
+  },
+  {
+    "english_term": "Deese-Roediger-McDermott paradigm",
+    "chinese_term": "DRM范式",
+    "definition": "A paradigm for creating false memories of words by presenting associatively related words."
+  },
+  {
+    "english_term": "default values",
+    "chinese_term": "默认值",
+    "definition": "A typical value for slots in a schema representation."
+  },
+  {
+    "english_term": "deliberate practice",
+    "chinese_term": "有目的的练习",
+    "definition": "The kind of practice that Ericsson postulated to be critical for the development of expertise. This practice is highly motivated and includes careful self-monitoring."
+  },
+  {
+    "english_term": "dendrite",
+    "chinese_term": "树突",
+    "definition": "The branching part of a neuron that receives synapses from the axons of other neurons."
+  },
+  {
+    "english_term": "denial of the antecedent",
+    "chinese_term": "否定前件",
+    "definition": "The logical fallacy that one can reason from the denial of the antecedent of a conditional statement to the denial of its consequent: If A, then B and Not A together are thought (falsely) to imply Not B."
+  },
+  {
+    "english_term": "depth of processing",
+    "chinese_term": "加工深度",
+    "definition": "The theory that memory for information is improved if the information is processed at deeper levels of analysis."
+  },
+  {
+    "english_term": "descriptive model",
+    "chinese_term": "描述模型",
+    "definition": "A model that states how people actually behave. Contrast with prescriptive model."
+  },
+  {
+    "english_term": "dichotic listening task",
+    "chinese_term": "双耳分听任务",
+    "definition": "A task in which participants in an experiment are presented with two messages simultaneously, one to each ear, and are instructed to repeat back the words from only one of them."
+  },
+  {
+    "english_term": "difference reductions",
+    "chinese_term": "差异降低",
+    "definition": "The tendency in problem solving to select operators that eliminate a difference between the current state and the goal."
+  },
+  {
+    "english_term": "dissociations",
+    "chinese_term": "分离",
+    "definition": "A demonstration that a manipulation has an effect on performance of one task but not another. Such demonstrations are thought to be important in arguing for different cognitive systems."
+  },
+  {
+    "english_term": "dorsolateral prefrontal cortex (DLPFC)",
+    "chinese_term": "背外侧前额叶皮层",
+    "definition": "Upper portion of the prefrontal cortex thought to be important in cognitive control."
+  },
+  {
+    "english_term": "dual-code theory",
+    "chinese_term": "双重编码理论",
+    "definition": "Paivio's theory that there are separate visual and verbal representations for knowledge."
+  },
+  {
+    "english_term": "early-selection theory",
+    "chinese_term": "早期选择理论",
+    "definition": "A theory of attention stating that serial bottlenecks occur early in information processing. Contrast with late-selection theory."
+  },
+  {
+    "english_term": "echoic memory",
+    "chinese_term": "声像记忆",
+    "definition": "Another term for auditory sensory store."
+  },
+  {
+    "english_term": "edge detectors",
+    "chinese_term": "边缘觉察器",
+    "definition": "A cell in the visual cortex that responds most to edges in the visual field. Compare bar detector."
+  },
+  {
+    "english_term": "egocentric representation",
+    "chinese_term": "自我中心表征",
+    "definition": "A representation of the environment as it appears in a current view. Contrast with allocentric representation."
+  },
+  {
+    "english_term": "Einstellung effect",
+    "chinese_term": "心向效应",
+    "definition": "The term used by A. S. Luchins to refer to the set effect, in which people will repeat a solution that has worked for previous problems even when a simpler solution is possible."
+  },
+  {
+    "english_term": "elaborative inference",
+    "chinese_term": "增细（或顺向）推理",
+    "definition": "In sentence comprehension, an inference that connects a text to possible material not yet asserted. Contrast with bridging inference."
+  },
+  {
+    "english_term": "elaborative processing",
+    "chinese_term": "增细加工",
+    "definition": "The embellishment of a to-be-remembered item with additional information."
+  },
+  {
+    "english_term": "electroencephalography (EEG)",
+    "chinese_term": "脑电图",
+    "definition": "Measurement of electrical activity of the brain, measured by electrodes on the scalp."
+  },
+  {
+    "english_term": "embodied cognition",
+    "chinese_term": "具身认知",
+    "definition": "The viewpoint that the mind can only be understood by taking into account the human body and how it interacts with the environment."
+  },
+  {
+    "english_term": "empiricism",
+    "chinese_term": "经验主义",
+    "definition": "The position that knowledge is acquired through experience in the world. Compare nativism."
+  },
+  {
+    "english_term": "encoding-specificity principle",
+    "chinese_term": "编码特异性原则",
+    "definition": "Tulving's principle that memory is better when the encoding of an item at study matches the encoding at test."
+  },
+  {
+    "english_term": "epiphenomenon",
+    "chinese_term": "副现象",
+    "definition": "A secondary mental event that has no functional role in the information processing."
+  },
+  {
+    "english_term": "event-related potential (ERP)",
+    "chinese_term": "事件相关电位",
+    "definition": "Measurement of changes in electrical activity at the scalp in response to an external event."
+  },
+  {
+    "english_term": "excitatory synapse",
+    "chinese_term": "兴奋性突触",
+    "definition": "A synapse in which the neurotransmitters decrease the potential difference across the membrane of the neuron."
+  },
+  {
+    "english_term": "executive control",
+    "chinese_term": "执行控制",
+    "definition": "The direction of central cognition, which is carried out mainly by prefrontal regions of the brain."
+  },
+  {
+    "english_term": "exemplar theory",
+    "chinese_term": "实例理论",
+    "definition": "A theory holding that we gain our knowledge of concepts by retrieving specific exemplars of the concepts. Contrast with abstraction theory."
+  },
+  {
+    "english_term": "explicit memory",
+    "chinese_term": "外显记忆",
+    "definition": "Knowledge that we can consciously recall. Contrast with implicit memory."
+  },
+  {
+    "english_term": "factor analysis",
+    "chinese_term": "因素分析",
+    "definition": "In the context of intelligence tests, a statistical method that tries to find a set of factors that will account for performance across a range of tests."
+  },
+  {
+    "english_term": "false-memory syndrome",
+    "chinese_term": "虚假记忆综合征",
+    "definition": "A term used to describe the condition of false memories of childhood abuse."
+  },
+  {
+    "english_term": "fan effect",
+    "chinese_term": "扇面效应",
+    "definition": "The phenomenon that the retrieval of memories takes longer as more things are associated with the items composing the original memories."
+  },
+  {
+    "english_term": "feature analysis",
+    "chinese_term": "特征分析",
+    "definition": "A theory of pattern recognition that claims that we extract primitive features and then recognize their combinations."
+  },
+  {
+    "english_term": "feature-integration theory",
+    "chinese_term": "特征整合理论",
+    "definition": "Treisman's proposal that one must focus attention on a set of features before the individual features can be synthesized into a pattern."
+  },
+  {
+    "english_term": "feature maps",
+    "chinese_term": "特征地图",
+    "definition": "A representation of the spatial locations of a particular visual feature."
+  },
+  {
+    "english_term": "filter theory",
+    "chinese_term": "过滤器理论",
+    "definition": "Broadbent’s early-selection theory of attention, which assumes that, when sensory information has to pass through a bottleneck, only some of the information is selected for further processing, on the basis of physical characteristics such as the pitch of a speaker’s voice."
+  },
+  {
+    "english_term": "flashbulb memories",
+    "chinese_term": "闪光灯记忆",
+    "definition": "Particularly good memory for events that are very important and traumatic."
+  },
+  {
+    "english_term": "fluid intelligence",
+    "chinese_term": "液态智力",
+    "definition": "Cattell’s term for the factor in intelligence that depends on the ability to reason or solve problems."
+  },
+  {
+    "english_term": "fMRI",
+    "chinese_term": "功能性磁共振成像",
+    "definition": "See functional magnetic resonance imaging."
+  },
+  {
+    "english_term": "formal-operational stage",
+    "chinese_term": "形式运算阶段",
+    "definition": "The fourth of Piaget’s four stages of development, during which a child has abstract schemes for reasoning about the world."
+  },
+  {
+    "english_term": "forward inference",
+    "chinese_term": "增细（或顺向）推理",
+    "definition": "See elaborative inference."
+  },
+  {
+    "english_term": "fovea",
+    "chinese_term": "中央凹",
+    "definition": "The area of the retina with the greatest visual acuity. When we focus on an object, we move the eyes so that the image of the object falls on the fovea."
+  },
+  {
+    "english_term": "framing effects",
+    "chinese_term": "框架效应",
+    "definition": "The tendency for people to make different choices among the same alternatives, depending on the statement of the alternatives."
+  },
+  {
+    "english_term": "frontal lobe",
+    "chinese_term": "额叶",
+    "definition": "The region at the front of the cerebral cortex that includes the motor cortex and the prefrontal cortex."
+  },
+  {
+    "english_term": "functional fixedness",
+    "chinese_term": "功能固着",
+    "definition": "The tendency to see objects only as serving conventional problem-solving functions and thus failing to see that they can serve novel functions."
+  },
+  {
+    "english_term": "functional magnetic resonance imaging (fMRI)",
+    "chinese_term": "功能性磁共振成像",
+    "definition": "A method for determining metabolic activity by measuring the magnetic field produced by the iron in oxygenated blood."
+  },
+  {
+    "english_term": "fusiform face area",
+    "chinese_term": "梭状回脸部区",
+    "definition": "A part of the temporal cortex that is special in fine discriminations, particularly of faces."
+  },
+  {
+    "english_term": "fusiform gyrus",
+    "chinese_term": "梭状回",
+    "definition": "A region in the temporal cortex involved in recognition of complex patterns like faces and words."
+  },
+  {
+    "english_term": "gambler’s fallacy",
+    "chinese_term": "赌徒谬误",
+    "definition": "The belief that, if a string of probabilistic events has turned out one way, there is an increased probability that the next event will now turn out the other way."
+  },
+  {
+    "english_term": "garden-path sentences",
+    "chinese_term": "花园路径句",
+    "definition": "A sentence with a transient ambiguity that causes us to make the wrong interpretation initially and then have to correct ourselves."
+  },
+  {
+    "english_term": "General Problem Solver (GPS)",
+    "chinese_term": "通用问题解决者",
+    "definition": "A problem-solving simulation program created by Newell and Simon that embodies means-ends analysis."
+  },
+  {
+    "english_term": "geons",
+    "chinese_term": "几何子",
+    "definition": "One of Biederman’s 36 primitive categories of subobjects that we combine to perceive larger objects."
+  },
+  {
+    "english_term": "gestalt principles of organization",
+    "chinese_term": "格式塔组织原则",
+    "definition": "Principles that determine how a scene is organized into components. The principles include proximity, similarity, good continuation, closure, and good form."
+  },
+  {
+    "english_term": "Gestalt psychology",
+    "chinese_term": "格式塔心理学",
+    "definition": "An approach to psychology that emphasizes principles of organization that result in holistic properties of the brain that go beyond the activity of the parts."
+  },
+  {
+    "english_term": "goal-directed attention",
+    "chinese_term": "目标导向注意",
+    "definition": "Allocation of processing resources in response to one’s goals."
+  },
+  {
+    "english_term": "stimulus-driven attention",
+    "chinese_term": "",
+    "definition": ""
+  },
+  {
+    "english_term": "goal state",
+    "chinese_term": "目标状态",
+    "definition": "A state in a problem space in which the goal is satisfied."
+  },
+  {
+    "english_term": "grammar",
+    "chinese_term": "语法",
+    "definition": "A set of rules that prescribe all the acceptable utterances of a language. A grammar consists of syntax, semantics, and phonology."
+  },
+  {
+    "english_term": "gyrus",
+    "chinese_term": "脑回",
+    "definition": "An outward fold on the brain. Contrast with sulcus."
+  },
+  {
+    "english_term": "hemodynamic response",
+    "chinese_term": "血流动力学反应",
+    "definition": "The increased flow of oxygenated blood to a region of the brain that has greater activity—this is the basis of fMRI brain imaging."
+  },
+  {
+    "english_term": "hill climbing",
+    "chinese_term": "爬山算法",
+    "definition": "The tendency to choose operators in problem solving that transform the current state into a new state more similar to the goal."
+  },
+  {
+    "english_term": "hippocampus",
+    "chinese_term": "海马",
+    "definition": "A structure within the temporal lobe that plays a critical role in the formation of permanent memories."
+  },
+  {
+    "english_term": "iconic memory",
+    "chinese_term": "视像记忆",
+    "definition": "Another term for visual sensory store."
+  },
+  {
+    "english_term": "illusory conjunction",
+    "chinese_term": "错觉关联",
+    "definition": "The illusion that features of different objects actually came from a single object."
+  },
+  {
+    "english_term": "immediacy of interpretation",
+    "chinese_term": "即时解释",
+    "definition": "The principle of language processing stating that people commit to an"
+  },
+  {
+    "english_term": "implicit memory",
+    "chinese_term": "内隐记忆",
+    "definition": "Knowledge that we cannot consciously recall but that nonetheless manifests itself in our improved performance on some task. Contrast with explicit memory."
+  },
+  {
+    "english_term": "incubation effect",
+    "chinese_term": "酝酿效应",
+    "definition": "The phenomenon that sometimes a solution to a particular problem comes more easily after a period of time in which one has stopped trying to solve the problem."
+  },
+  {
+    "english_term": "inductive reasoning",
+    "chinese_term": "归纳推理",
+    "definition": "Reasoning in which the conclusions follow only probabilistically from the premises."
+  },
+  {
+    "english_term": "information-processing approach",
+    "chinese_term": "信息加工法",
+    "definition": "An analysis of human cognition into a set of steps in which abstract information is processed."
+  },
+  {
+    "english_term": "inhibition of return",
+    "chinese_term": "返回抑制",
+    "definition": "The decreased ability to return our attention to a location or an object that we have already looked at."
+  },
+  {
+    "english_term": "inhibitory synapse",
+    "chinese_term": "抑制性突触",
+    "definition": "A synapse in which the neurotransmitters increase the potential difference across the membrane of a neuron."
+  },
+  {
+    "english_term": "insight problem",
+    "chinese_term": "顿悟问题",
+    "definition": "A problem in which the subject is not aware of being close to a solution."
+  },
+  {
+    "english_term": "intelligence quotient (IQ)",
+    "chinese_term": "智商",
+    "definition": "A measure of general intellectual performance that is normed to have a mean of 100 and a standard deviation of 15."
+  },
+  {
+    "english_term": "intelligent tutoring system",
+    "chinese_term": "智能家教系统",
+    "definition": "A computer system that combines cognitive models with techniques from artificial intelligence to create instructional interactions with students."
+  },
+  {
+    "english_term": "interactive processing",
+    "chinese_term": "交互加工",
+    "definition": "The position that semantic and syntactic cues are simultaneously brought to bear in interpreting a sentence. Contrast with modularity."
+  },
+  {
+    "english_term": "interference theory",
+    "chinese_term": "干扰理论",
+    "definition": "The theory that forgetting is caused by other memories interfering with the retention of the target memory. Contrast with decay theory."
+  },
+  {
+    "english_term": "introspection",
+    "chinese_term": "内省法",
+    "definition": "A methodology much practiced at the turn of the 20th century in Germany that attempted to analyze thought into its components through self-analysis."
+  },
+  {
+    "english_term": "isa link",
+    "chinese_term": "上属连接",
+    "definition": "A particular link in a semantic network or schema that indicates the superset of the category."
+  },
+  {
+    "english_term": "Korsakoff syndrome",
+    "chinese_term": "科尔萨科夫综合征",
+    "definition": "An amnesia resulting from chronic alcoholism and nutritional deficit."
+  },
+  {
+    "english_term": "language universal",
+    "chinese_term": "语言通则",
+    "definition": "A property that all natural languages satisfy."
+  },
+  {
+    "english_term": "late-selection Theory",
+    "chinese_term": "后期选择理论",
+    "definition": "A theory of attention stating that serial bottlenecks occur late in information processing."
+  },
+  {
+    "english_term": "linguistic determinism",
+    "chinese_term": "语言决定论",
+    "definition": "The proposal that the structure of one's language strongly influences the way in which one thinks."
+  },
+  {
+    "english_term": "linguistic intuitions",
+    "chinese_term": "语言直觉",
+    "definition": "A judgment by the speaker of a language about whether a sentence is well formed and about other properties of the sentence."
+  },
+  {
+    "english_term": "linguistics",
+    "chinese_term": "语言学",
+    "definition": "The study of the structure of language."
+  },
+  {
+    "english_term": "link",
+    "chinese_term": "连接",
+    "definition": "A connection between elements, or nodes, in a propositional network."
+  },
+  {
+    "english_term": "logical quantifiers",
+    "chinese_term": "逻辑量词",
+    "definition": "An element such as all, no, some, and some not that appears in such statements as All A are B."
+  },
+  {
+    "english_term": "long-term potentiation (LTP)",
+    "chinese_term": "长时程增强效应",
+    "definition": "The increase in responsiveness of a neuron as a function of past stimulation."
+  },
+  {
+    "english_term": "magnetoencephalography (MEG)",
+    "chinese_term": "脑磁图",
+    "definition": "Measurement of magnetic fields produced by electrical activity in the brain."
+  },
+  {
+    "english_term": "mastery learning",
+    "chinese_term": "掌握学习",
+    "definition": "The effort to bring students to mastery of each element in a curriculum before promoting them to new material in the curriculum."
+  },
+  {
+    "english_term": "means-ends analysis",
+    "chinese_term": "手段－目的分析",
+    "definition": "The creation of a new goal (end) to enable a problem-solving operator (means) to apply in achieving the old goal."
+  },
+  {
+    "english_term": "memory span",
+    "chinese_term": "记忆广度",
+    "definition": "The amount of information that can be perfectly retained in an immediate test of memory."
+  },
+  {
+    "english_term": "mental imagery",
+    "chinese_term": "心理表象",
+    "definition": "The processing of perceptual-like information in the absence of an external source for the perceptual information."
+  },
+  {
+    "english_term": "mental model theory",
+    "chinese_term": "心理模型理论",
+    "definition": "Johnson-Laird's theory that participants judge a syllogism by imagining a world that satisfies the premises and seeing whether the conclusion is satisfied in that world."
+  },
+  {
+    "english_term": "mental rotation",
+    "chinese_term": "心理旋转",
+    "definition": "The process of continuously transforming the orientation of a mental image."
+  },
+  {
+    "english_term": "method of loci",
+    "chinese_term": "地点记忆法",
+    "definition": "A mnemonic technique used to associate items to be remembered with locations along a well-known path."
+  },
+  {
+    "english_term": "mirror neurons",
+    "chinese_term": "镜像神经元",
+    "definition": "A neuron that fires both when the animal is performing the action and when it observes another animal performing the action."
+  },
+  {
+    "english_term": "mnemonic technique",
+    "chinese_term": "记忆术",
+    "definition": "A method for enhancing memory performance by giving the material to be remembered a meaningful interpretation."
+  },
+  {
+    "english_term": "modularity",
+    "chinese_term": "模块性",
+    "definition": "The proposal that language is a component separate from the rest of cognition. It further argues that language comprehension has an initial phase in which only syntactic considerations are brought to bear. Contrast with interactive processing."
+  },
+  {
+    "english_term": "modus ponens",
+    "chinese_term": "肯定前件",
+    "definition": "The rule of logic stating that, if a conditional statement is true and its antecedent is true, then its consequent must be true: Given both the proposition If A, then B and the proposition A, we can infer that B is true."
+  },
+  {
+    "english_term": "modus tollens",
+    "chinese_term": "否定后件",
+    "definition": "The rule of logic stating that, if a conditional statement is true and its consequent is false, then its antecedent must be false: Given the proposition If A, then B and the fact that B is false, we can infer that A is false."
+  },
+  {
+    "english_term": "mood congruence",
+    "chinese_term": "心境一致性",
+    "definition": "The phenomenon that one’s memory is better for studied material whose emotional content matches one’s mood at test."
+  },
+  {
+    "english_term": "multimodal hypothesis",
+    "chinese_term": "多通道假设",
+    "definition": "The theory that knowledge is represented in multiple perceptual and motor modalities."
+  },
+  {
+    "english_term": "N400",
+    "chinese_term": "N400",
+    "definition": "A negativity in the event-related potential (ERP) at about 400 ms after the processing of a semantically difficult word."
+  },
+  {
+    "english_term": "nativism",
+    "chinese_term": "先验主义",
+    "definition": "The position that children are born with a great deal of innate knowledge. Compare empiricism."
+  },
+  {
+    "english_term": "natural languages",
+    "chinese_term": "自然语言",
+    "definition": "A language that can be acquired and spoken by humans."
+  },
+  {
+    "english_term": "negative transfer",
+    "chinese_term": "负迁移",
+    "definition": "Poor learning of a second task as a function of having learned a first task."
+  },
+  {
+    "english_term": "neuron",
+    "chinese_term": "神经元",
+    "definition": "The cell in the nervous system responsible for information processing. Neurons accumulate and transmit electrical activity."
+  },
+  {
+    "english_term": "neurotransmitter",
+    "chinese_term": "神经递质",
+    "definition": "A chemical that crosses the synapse from the axon of one neuron and alters the electric potential of the membrane of another neuron."
+  },
+  {
+    "english_term": "node",
+    "chinese_term": "节点",
+    "definition": "An element of a propositional or semantic network."
+  },
+  {
+    "english_term": "object-based attention",
+    "chinese_term": "基于物体的注意",
+    "definition": "Allocation of attention to chunks of visual information corresponding to an object. Contrast with space-based attention."
+  },
+  {
+    "english_term": "occipital lobe",
+    "chinese_term": "枕叶",
+    "definition": "The region at the back of the cerebral cortex that controls vision."
+  },
+  {
+    "english_term": "operator",
+    "chinese_term": "算子",
+    "definition": "A term used in problem solving research to refer to a particular action that will transform the problem state into another problem state. The solution of an overall problem is a sequence of these known operators."
+  },
+  {
+    "english_term": "P600",
+    "chinese_term": "P600",
+    "definition": "A positivity in the event-related potential (ERP) at about 600 ms after the processing of a syntactically"
+  },
+  {
+    "english_term": "parahippocampal place area (PPA)",
+    "chinese_term": "海马旁回位置区",
+    "definition": "A region adjacent to the hippocampus that is active when people are perceiving places."
+  },
+  {
+    "english_term": "parameter setting",
+    "chinese_term": "参数设定",
+    "definition": "The proposal that children learn a language by learning the setting of 100 or so parameters that define a natural language."
+  },
+  {
+    "english_term": "parietal lobe",
+    "chinese_term": "顶叶",
+    "definition": "The region at the top of the cerebral cortex concerned with attention and higher level sensory functions."
+  },
+  {
+    "english_term": "parsing",
+    "chinese_term": "语法分析",
+    "definition": "The process by which the words in a linguistic message are transformed into a mental representation of their combined meaning."
+  },
+  {
+    "english_term": "partial-report procedure",
+    "chinese_term": "部分报告法",
+    "definition": "An experimental procedure in which participants are cued to report only some of the items in a display. Contrast with whole-report procedure."
+  },
+  {
+    "english_term": "particular statements",
+    "chinese_term": "特称命题",
+    "definition": "Statements, frequently using the word some, that logicians interpret as meaning it is true about at least some members of a category. Contrast with universal statements."
+  },
+  {
+    "english_term": "perceptual symbol system",
+    "chinese_term": "知觉符号系统",
+    "definition": "Barsalou's proposal that all knowledge is represented by information that is perceptual and tied to particular modalities. Contrast with amodal symbol system."
+  },
+  {
+    "english_term": "perfect time-sharing",
+    "chinese_term": "完全时间分享",
+    "definition": "The ability to pursue more than one task at the same time. Contrast with central bottleneck."
+  },
+  {
+    "english_term": "performance",
+    "chinese_term": "操作",
+    "definition": "A term in linguistics that refers to the way that a person speaks. This behavior is thought to be only an imperfect manifestation of that person’s linguistic competence."
+  },
+  {
+    "english_term": "permission schema",
+    "chinese_term": "许可图式",
+    "definition": "An interpretation of a conditional statement in which the antecedent specifies the situations in which the consequent is permitted."
+  },
+  {
+    "english_term": "phonemes",
+    "chinese_term": "音素复位效应",
+    "definition": "The minimal unit of speech that can result in a difference in a spoken message."
+  },
+  {
+    "english_term": "phoneme-restoration effect",
+    "chinese_term": "音素",
+    "definition": "The tendency to hear phonemes that make sense in the speech context even if no such phonemes were spoken."
+  },
+  {
+    "english_term": "phonological loop",
+    "chinese_term": "语音回路",
+    "definition": "Baddeley’s proposed system for rehearsing verbal information. Compare visuospatial sketchpad."
+  },
+  {
+    "english_term": "phonology",
+    "chinese_term": "语音",
+    "definition": "The study of the sound structure of languages."
+  },
+  {
+    "english_term": "phrase structure",
+    "chinese_term": "短语结构",
+    "definition": "The hierarchical organization of a sentence into a set of units called phrases, sometimes represented as a tree structure."
+  },
+  {
+    "english_term": "place of articulation",
+    "chinese_term": "发音部位",
+    "definition": "The place at which the vocal tract is closed or constricted in the production of a phoneme."
+  },
+  {
+    "english_term": "positron emission tomography (PET)",
+    "chinese_term": "正电子发射断层扫描",
+    "definition": "A method for measuring metabolic activity in different regions of the brain with the use of a radioactive tracer."
+  },
+  {
+    "english_term": "posterior probability",
+    "chinese_term": "后验概率",
+    "definition": "In Bayes’s theorem, the probability that a hypothesis is true after consideration of the evidence."
+  },
+  {
+    "english_term": "power function",
+    "chinese_term": "幂函数",
+    "definition": "A function in which the independent variable X is raised to a power to obtain the dependent variable Y, as in Y = AX^b."
+  },
+  {
+    "english_term": "power law of forgetting",
+    "chinese_term": "遗忘的幂定律",
+    "definition": "The phenomenon that memory performance deteriorates as a power function of the retention interval."
+  },
+  {
+    "english_term": "power law of learning",
+    "chinese_term": "学习的幂定律",
+    "definition": "The phenomenon that memory performance improves as a power function of practice."
+  },
+  {
+    "english_term": "prefrontal cortex",
+    "chinese_term": "前额叶皮层",
+    "definition": "The region at the front of the frontal cortex that controls planning and other higher level cognition."
+  },
+  {
+    "english_term": "preoperational stage",
+    "chinese_term": "前运算阶段",
+    "definition": "The second of Piaget’s four stages of development, during which a child has unsystematic schemes for thinking about the physical world."
+  },
+  {
+    "english_term": "prescriptive model",
+    "chinese_term": "规范模型",
+    "definition": "A model that specifies how people ought to behave to be considered rational. Contrast with descriptive model."
+  },
+  {
+    "english_term": "primal sketch",
+    "chinese_term": "初级简图",
+    "definition": "The level of visual processing in Marr’s model in which the visual features have been extracted from a stimulus."
+  },
+  {
+    "english_term": "priming",
+    "chinese_term": "启动",
+    "definition": "The enhancement of the processing of a stimulus as a function of prior exposure."
+  },
+  {
+    "english_term": "principle of minimal attachment",
+    "chinese_term": "最简附着原则",
+    "definition": "A rule of parsing that interprets a sentence in a way that results in minimal complication of the phrase structure."
+  },
+  {
+    "english_term": "prior probability",
+    "chinese_term": "先验概率",
+    "definition": "In Bayes’s theorem, the probability that a hypothesis is true before consideration of the evidence."
+  },
+  {
+    "english_term": "probability matching",
+    "chinese_term": "概率匹配",
+    "definition": "The tendency to choose an alternative with a probability that matches the frequency with which that alternative occurs in experience."
+  },
+  {
+    "english_term": "problem space",
+    "chinese_term": "问题空间",
+    "definition": "A representation of the various, sequences of problem-solving operators that lead among various states of a problem. Also called state space."
+  },
+  {
+    "english_term": "procedural knowledge",
+    "chinese_term": "程序性知识",
+    "definition": "Knowledge of how to perform various tasks. Contrast with declarative knowledge."
+  },
+  {
+    "english_term": "proceduralization",
+    "chinese_term": "程序化",
+    "definition": "The process by which declarative knowledge is converted into procedural knowledge."
+  },
+  {
+    "english_term": "proposition",
+    "chinese_term": "命题",
+    "definition": "The smallest unit of knowledge that can stand as a separate assertion."
+  },
+  {
+    "english_term": "propositional network",
+    "chinese_term": "命题网络",
+    "definition": "A propositional representation in which the relation and arguments of the proposition are linked in a network."
+  },
+  {
+    "english_term": "propositional representation",
+    "chinese_term": "命题表征",
+    "definition": "A representation of meaning as a set of propositions."
+  },
+  {
+    "english_term": "prosopagnosia",
+    "chinese_term": "人脸失认症",
+    "definition": "A neurological disorder characterized by the inability to recognize faces."
+  },
+  {
+    "english_term": "psychometric test",
+    "chinese_term": "心理测量学测验",
+    "definition": "A test of various aspects of a person's intellectual performance."
+  },
+  {
+    "english_term": "rate of firing",
+    "chinese_term": "放电频率",
+    "definition": "The rate at which nerve impulses are generated along axons."
+  },
+  {
+    "english_term": "recognition-by-components theory",
+    "chinese_term": "再认启发式",
+    "definition": "Biederman's theory stating that we recognize objects by first identifying the geons that correspond to their subobjects."
+  },
+  {
+    "english_term": "recognition heuristic",
+    "chinese_term": "基于部件识别理论",
+    "definition": "If one item is recognized and another is not, people view the recognized item to have a higher value on dimensions like size."
+  },
+  {
+    "english_term": "regularity",
+    "chinese_term": "规则性",
+    "definition": "Refers to the fact that natural languages have systematic rules that determine the possible forms of utterances."
+  },
+  {
+    "english_term": "relation",
+    "chinese_term": "关系",
+    "definition": "The element that organizes the arguments of a propositional representation."
+  },
+  {
+    "english_term": "retrograde amnesia",
+    "chinese_term": "逆行性遗忘症",
+    "definition": "Loss of memory for things that occurred before an injury. Contrast with anterograde amnesia."
+  },
+  {
+    "english_term": "route maps",
+    "chinese_term": "行进图",
+    "definition": "A representation of the environment consisting of the paths between locations. Contrast with survey map."
+  },
+  {
+    "english_term": "rule learning",
+    "chinese_term": "规则学习",
+    "definition": "Determining how the features combine to make a hypothesis."
+  },
+  {
+    "english_term": "SAM (Search of Associative Memory)",
+    "chinese_term": "SAM（联想记忆搜索）",
+    "definition": "Shiffrin's theory of memory stating that the availability of memories is a function of their familiarity, which in turn is a function of their strength of association with cues in the environment."
+  },
+  {
+    "english_term": "schema",
+    "chinese_term": "图式",
+    "definition": "A representation of members of a category based on the type of objects that they are, the parts that they tend to have, and their typical properties. A slot-value structure is used to represent this information."
+  },
+  {
+    "english_term": "script",
+    "chinese_term": "脚本",
+    "definition": "A schema representation proposed by Schank and Abelson for event concepts."
+  },
+  {
+    "english_term": "search",
+    "chinese_term": "搜索",
+    "definition": "The process by which one finds a sequence of operators to solve a problem."
+  },
+  {
+    "english_term": "selection task",
+    "chinese_term": "选择任务",
+    "definition": "A task in which a participant is given a conditional statement of the form If A, then B and must choose which situations among A, B, Not A, and Not B need to be checked to test the truth of the conditional."
+  },
+  {
+    "english_term": "semantics",
+    "chinese_term": "语义",
+    "definition": "The meaning structure of linguistic units."
+  },
+  {
+    "english_term": "sensory-motor stage",
+    "chinese_term": "感觉运动阶段",
+    "definition": "The first of Piaget's four stages of development, during which a child lacks basic schemes for thinking about the physical world and experiences it in terms of sensations and actions."
+  },
+  {
+    "english_term": "serial bottleneck",
+    "chinese_term": "顺序瓶颈",
+    "definition": "The point in the path from perception to action at which people cannot process all the incoming information in parallel."
+  },
+  {
+    "english_term": "set effect",
+    "chinese_term": "定势效应",
+    "definition": "The biasing of a solution to a problem as a result of past experiences in solving that kind of problem."
+  },
+  {
+    "english_term": "short-term memory",
+    "chinese_term": "短时记忆",
+    "definition": "A proposed intermediate memory system that holds information as it travels from sensory memory to long-term memory."
+  },
+  {
+    "english_term": "situation model",
+    "chinese_term": "情景模型",
+    "definition": "A representation of the events and situations described in a text."
+  },
+  {
+    "english_term": "slot",
+    "chinese_term": "插槽",
+    "definition": "An element of a schema that indicates different attributes of a concept."
+  },
+  {
+    "english_term": "space-based attention",
+    "chinese_term": "基于空间的注意",
+    "definition": "Allocation of attention to visual information in a region of space. Contrast with object-based attention."
+  },
+  {
+    "english_term": "split-brain patients",
+    "chinese_term": "裂脑病人",
+    "definition": "A patient who has had surgery to sever the corpus callosum, which connects left and right hemispheres."
+  },
+  {
+    "english_term": "spreading activation",
+    "chinese_term": "扩散激活",
+    "definition": "The proposal that activation spreads from items currently or recently processed to other parts of the memory network, activating the memory traces that reside there."
+  },
+  {
+    "english_term": "state",
+    "chinese_term": "状态",
+    "definition": "A term in problem solving used to refer to a representation of the problem in some degree of solution."
+  },
+  {
+    "english_term": "state-dependent learning",
+    "chinese_term": "状态-依存学习",
+    "definition": "The phenomenon that memory performance is better when we are tested in the same emotional and physical state as we were in when we learned the material."
+  },
+  {
+    "english_term": "Sternberg paradigm",
+    "chinese_term": "斯腾伯格范式",
+    "definition": "An experimental procedure in which participants are presented with a memory set consisting of a few items and must decide whether various probe items are in the memory set."
+  },
+  {
+    "english_term": "stimulus-driven attention",
+    "chinese_term": "刺激驱动注意",
+    "definition": "Allocation of processing resources in response to a salient stimulus. Contrast with goal-directed attention."
+  },
+  {
+    "english_term": "strategic learning",
+    "chinese_term": "策略学习",
+    "definition": "The learning of how to organize one’s problem solving for a specific class of problems."
+  },
+  {
+    "english_term": "strength",
+    "chinese_term": "强度",
+    "definition": "The property of a memory trace that determines how active the trace can become. Strength increases with practice and decays with time."
+  },
+  {
+    "english_term": "Stroop effect",
+    "chinese_term": "斯特鲁普效应",
+    "definition": "A phenomenon in which the tendency to name a word will interfere with the ability to say the color in which the word is printed."
+  },
+  {
+    "english_term": "subgoal",
+    "chinese_term": "子目标",
+    "definition": "A goal set in service of achieving a larger goal."
+  },
+  {
+    "english_term": "subjective probability",
+    "chinese_term": "主观概率",
+    "definition": "The probability people associate with an event, which need not be identical to the event's objective probability."
+  },
+  {
+    "english_term": "subjective utility",
+    "chinese_term": "主观效用",
+    "definition": "The value that someone places on something."
+  },
+  {
+    "english_term": "sulcus",
+    "chinese_term": "脑沟",
+    "definition": "An inward fold of the brain. Contrast with gyrus."
+  },
+  {
+    "english_term": "survey maps",
+    "chinese_term": "俯瞰图",
+    "definition": "A representation of the environment consisting of the position of locations in space. Contrast with route map."
+  },
+  {
+    "english_term": "syllogisms",
+    "chinese_term": "三段论",
+    "definition": "A logical argument consisting of two premises and a conclusion."
+  },
+  {
+    "english_term": "synapse",
+    "chinese_term": "突触",
+    "definition": "The location at which the axon of one neuron almost makes contact with another neuron."
+  },
+  {
+    "english_term": "syntax",
+    "chinese_term": "句法",
+    "definition": "Grammatical rules for specifying correct word order and inflectional structure in a sentence."
+  },
+  {
+    "english_term": "tactical learning",
+    "chinese_term": "技法学习",
+    "definition": "The learning of sequences of actions that help solve a problem. Compare strategic learning."
+  },
+  {
+    "english_term": "template matching",
+    "chinese_term": "模板匹配",
+    "definition": "A theory of pattern recognition stating that an object is recognized as a function of its overlap with various pattern templates stored in the brain."
+  },
+  {
+    "english_term": "temporal lobe",
+    "chinese_term": "颞叶",
+    "definition": "The region at the side of the cerebral cortex that contains the primary auditory areas and controls the recognition of objects."
+  },
+  {
+    "english_term": "theory of identical elements",
+    "chinese_term": "相同要素说",
+    "definition": "The theory that there will be transfer from one skill to another only to the extent that the skills have the same knowledge elements in common."
+  },
+  {
+    "english_term": "top-down processing",
+    "chinese_term": "自上而下加工",
+    "definition": "The processing of a stimulus in which information from the general context is used to help recognize the stimulus. Contrast with bottom-up processing."
+  },
+  {
+    "english_term": "topographic organization",
+    "chinese_term": "拓扑组织",
+    "definition": "A principle of neural organization in which adjacent areas of the cortex process information from adjacent parts of the sensory field."
+  },
+  {
+    "english_term": "Tower of Hanoi problem",
+    "chinese_term": "河内塔问题",
+    "definition": "A problem-solving task in which disks are moved among pegs."
+  },
+  {
+    "english_term": "transcranial magnetic stimulation (TMS)",
+    "chinese_term": "经颅磁刺激",
+    "definition": "A magnetic field is applied to the surface of the head to disrupt the neural processing in that region of brain."
+  },
+  {
+    "english_term": "transformation",
+    "chinese_term": "转换",
+    "definition": "A linguistic rule that moves a term from one part of a sentence to another part."
+  },
+  {
+    "english_term": "transient ambiguity",
+    "chinese_term": "暂时性歧义",
+    "definition": "A temporary ambiguity within a sentence that is resolved by the end of the sentence."
+  },
+  {
+    "english_term": "universal statements",
+    "chinese_term": "全称命题",
+    "definition": "Statements, often involving words like all or none, that logicians interpret as having no exceptions. Contrast with particular statements."
+  },
+  {
+    "english_term": "utilization",
+    "chinese_term": "语用",
+    "definition": "The process by which language comprehenders respond to the meaning of a linguistic message."
+  },
+  {
+    "english_term": "ventromedial prefrontal cortex",
+    "chinese_term": "腹内侧前额叶皮层",
+    "definition": "The portion of the cortex in the front and center of the brain. It seems to be involved in decision making and self-regulation, including activities like gambling behavior."
+  },
+  {
+    "english_term": "visual agnosia",
+    "chinese_term": "视觉失认症",
+    "definition": "An inability to recognize visual objects that results neither from general intellectual loss nor from loss of basic sensory abilities."
+  },
+  {
+    "english_term": "visual sensory store",
+    "chinese_term": "视感觉存储",
+    "definition": "A memory system that effectively holds all the information in a visual array for a very brief period of time (about a second). Also called iconic memory."
+  },
+  {
+    "english_term": "visuospatial sketchpad",
+    "chinese_term": "视觉空间画板",
+    "definition": "Baddeley's proposed system for rehearsing visual information. Compare phonological loop."
+  },
+  {
+    "english_term": "voicing",
+    "chinese_term": "浊音音质",
+    "definition": "The property of a phoneme produced by vibration of the vocal cords."
+  },
+  {
+    "english_term": "Wernicke's area",
+    "chinese_term": "威尔尼克区",
+    "definition": "A region of the left temporal lobe important to language, particularly the semantic content of speech."
+  },
+  {
+    "english_term": "whole-report procedure",
+    "chinese_term": "全部报告法",
+    "definition": "A procedure in which participants are asked to report all the items of a display. Contrast with partial report procedure."
+  },
+  {
+    "english_term": "word superiority effect",
+    "chinese_term": "词优效应",
+    "definition": "The superior recognition of letters presented in a word context than when the letters are presented alone."
+  },
+  {
+    "english_term": "working memory",
+    "chinese_term": "工作记忆",
+    "definition": "The information that is currently available in memory for working on a problem."
+  }
+]
